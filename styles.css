@@ -1,0 +1,2652 @@
+:root {
+  --canvas-w: 1920px;
+  --canvas-h: 1080px;
+
+  --color-card-bg: #f2c980;
+  --color-text-primary: #2a1c0f;   /* on parchment #f2c980: ~10.8:1 */
+  --color-text-accent: #ff4242;    /* on parchment #f2c980: ~2.2:1 — fails WCAG AA, see note */
+  --color-focus: #005fcc;
+  --color-correct: #2e8b57;
+  --color-incorrect: #ca433d;
+}
+
+* { box-sizing: border-box; }
+
+/* No <img> in this project is ever the thing being dragged -- every real drag
+   interaction uses a <button draggable="true">. Left at the browser default,
+   a plain <img> (e.g. the full-screen .bg behind every screen) is natively
+   draggable too, and can start a second, unintended native drag underneath
+   the cursor. At top level (not sandboxed in an iframe) that can make Chrome
+   try to drag the local file out of the tab, hanging the page until reload. */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a1a2a;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Assistant", "Arial Hebrew", Arial, sans-serif;
+}
+
+#app {
+  position: absolute;
+  width: var(--canvas-w);
+  height: var(--canvas-h);
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* darkens the background photo on question screens only -- sits above the
+   .bg image but behind every other element (card, buttons, etc). */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.intro-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ministry logo, opening screen only -- a soft fading gradient card (the
+   course's own parchment tone, not a hard-edged white sticker) so the dark
+   navy logo stays readable against the busy beach/sky photo without looking
+   pasted on. */
+.opening-logo-badge {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  z-index: 3;
+  padding: 22px 34px;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at center, rgba(250, 240, 214, 0.92) 0%, rgba(250, 240, 214, 0.6) 65%, rgba(250, 240, 214, 0) 100%);
+}
+
+.opening-logo {
+  display: block;
+  width: 240px;
+  height: auto;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  width: 855px;
+  height: 547px;
+  padding: 56px 64px 84px;
+  background-image: url("assets/ChatGPT Image Aug 27, 2026, 11_27_46 AM.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.3));
+}
+
+/* Opening screen (before screen-intro): a wide landscape card, no book prop
+   -- .intro-stage centers it on its own since there's no sibling .book image. */
+.card--opening {
+  width: 1140px;
+  height: 660px;
+  padding: 70px 90px 90px;
+  justify-content: flex-start;
+  gap: 26px;
+}
+
+.card--opening .card-line,
+.card--opening .card-line:last-of-type {
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Compound selectors (rather than the bare .card-line--opening-* classes)
+   so these reliably win over both the later .card-line base rule and the
+   higher-specificity .card-line:last-of-type (which otherwise matches the
+   cta line, being the last <p> in this card). */
+.card--opening .card-line--opening-title {
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.card--opening .card-line--opening-body {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.card--opening .card-line--opening-cta,
+.card--opening .card-line--opening-cta:last-of-type {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.card-line {
+  margin: 0 0 20px;
+  font-size: 30px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  max-width: 520px;
+}
+
+.card-line:last-of-type {
+  font-weight: 500;
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.btn-continue {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 141px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("assets/btn-continue-normal.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.btn-continue span {
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 700;
+  padding-bottom: 14px;
+}
+
+.btn-continue:hover,
+.btn-continue:focus-visible {
+  background-image: url("assets/btn-continue-hover.png");
+}
+
+.btn-continue:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.btn-continue:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+/* ---------- ScreenReader Only ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Screen 2: Sorting Question ---------- */
+
+.progress-row {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+}
+
+.progress-list {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.progress-dot {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--color-focus);
+  font-weight: 700;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--color-focus);
+}
+
+.progress-dot--current {
+  font-size: 28px;
+  background: var(--color-focus);
+  color: #ffffff;
+  border-color: var(--color-focus);
+}
+
+.btn-help {
+  position: absolute;
+  top: 70px;
+  left: 110px;
+  width: 130px;
+  height: 132px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("assets/btn-help-open-normal-crop.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+.btn-help span {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.btn-help:hover,
+.btn-help:focus-visible {
+  background-image: url("assets/btn-help-open-hover-crop.png");
+}
+
+.btn-help:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.stage-card {
+  position: absolute;
+  top: 90px;
+  left: 129px;
+  width: 1662px;
+  height: 860px;
+  z-index: 2;
+  background-image: url("assets/blob-card.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.q-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 70px 16px;
+}
+
+.q-content h2,
+.q-content .q-text,
+.q-content .q-body {
+  align-self: stretch;
+}
+
+.q-content h2 {
+  margin: 0 0 18px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.q-content h2:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.q-text {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #222222;
+  max-width: 1100px;
+}
+
+.q-text--bold {
+  font-weight: 700;
+}
+
+/* Un-bolds a run of text nested inside a .q-text--bold parent, e.g. a
+   trailing clause that shouldn't inherit the bold weight. */
+.q-text-plain {
+  font-weight: 400;
+}
+
+.q-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 14px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.sort-table {
+  width: 952px;
+  height: 526px;
+  margin: 0;
+  border-collapse: collapse;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  table-layout: fixed;
+  flex-shrink: 0;
+}
+
+.sort-table th {
+  width: 50%;
+  height: 64px;
+  font-size: 37px;
+  font-weight: 700;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  background: #ffffff;
+}
+
+.sort-table tbody tr {
+  height: 92.4px;
+}
+
+.sort-table td {
+  border: 1px solid #1a1a1a;
+  padding: 0;
+  overflow: hidden;
+}
+
+.cell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  border: 0;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.cell[data-item] {
+  background: #fffaea;
+}
+
+.cell[aria-pressed="true"] {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+  background: #eaf3ff;
+}
+
+.cell:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.cell.correct {
+  background: #eaf7ee;
+}
+
+.cell.wrong {
+  background: #fdecea;
+}
+
+/* A cell the learner got wrong on both attempts, then auto-filled by
+   revealAnswer() -- kept visually distinct from .correct (which is reserved
+   for cells the learner placed correctly themselves) via blue + an eye icon
+   instead of green + a checkmark. */
+.cell.revealed {
+  background: #eaf1fb;
+}
+
+.cell.correct::after,
+.cell.wrong::after,
+.cell.revealed::after {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.cell.correct::after {
+  content: "\2713";
+  background-color: var(--color-correct);
+}
+
+.cell.wrong::after {
+  content: "\2715";
+  background-color: var(--color-incorrect);
+}
+
+.cell.revealed::after {
+  content: "";
+  background-color: var(--color-focus);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
+}
+
+.cell:disabled {
+  cursor: default;
+  opacity: 0.95;
+}
+
+.item-tray {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  width: 540px;
+  height: 526px;
+  flex-shrink: 0;
+}
+
+.pill {
+  position: relative;
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fffaea;
+  border: 2px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 30px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.pill-icon {
+  width: 53px;
+  height: 53px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.pill[aria-pressed="true"] {
+  background: #eaf3ff;
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.pill:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.pill[draggable="true"],
+.cell[draggable="true"] {
+  cursor: grab;
+}
+
+/* Images are natively draggable in browsers; left alone, a pill's own
+   <img> can start a competing native drag alongside the button's custom
+   one, producing a broken multi-item ghost. Disable it explicitly. */
+.pill-icon {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.pill-text {
+  user-select: none;
+  pointer-events: none;
+}
+
+.pill.dragging,
+.cell.dragging {
+  opacity: 0.4;
+}
+
+.cell.drag-over {
+  outline: 3px dashed var(--color-focus);
+  outline-offset: -3px;
+  background: #eaf3ff;
+}
+
+.item-tray.drag-over {
+  outline: 3px dashed var(--color-focus);
+  outline-offset: -6px;
+  border-radius: 12px;
+}
+
+.feedback-panel {
+  position: absolute;
+  left: 182px;
+  bottom: 309px;
+  z-index: 5;
+  width: 420px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 18px;
+  background: #fffaea;
+  border-radius: 16px;
+  padding: 22px 26px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.feedback-panel[hidden] {
+  display: none;
+}
+
+.feedback-icon {
+  width: 64px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* assets/reveal.png has more detail packed into a near-square frame than the
+   other feedback icons, so at the shared 64x80 box it reads visibly smaller
+   -- scaled up 40% (Q1's final-attempt-exhausted branch only). */
+.feedback-icon--reveal {
+  width: 89.6px;
+  height: 112px;
+}
+
+.feedback-text {
+  flex: 1;
+  font-size: 30px;
+  line-height: 1.4;
+  color: #1a1a1a;
+  text-align: right;
+}
+
+.feedback-text strong {
+  display: block;
+  font-size: 34px;
+  margin-bottom: 6px;
+}
+
+.feedback-panel--wrong .feedback-text strong {
+  color: #ca433d;
+}
+
+.feedback-panel--reveal .feedback-text strong {
+  color: #1f4fa0;
+}
+
+.btn-check:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-check:disabled:hover,
+.btn-check:disabled:focus-visible {
+  background-image: url("assets/btn-continue-normal.png");
+}
+
+.btn-check {
+  position: absolute;
+  top: 962px;
+  left: 7px;
+  width: 195px;
+  height: 110px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("assets/btn-continue-normal.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  z-index: 4;
+}
+
+.btn-check[hidden] {
+  display: none;
+}
+
+.btn-check span {
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.btn-check:hover,
+.btn-check:focus-visible {
+  background-image: url("assets/btn-continue-hover.png");
+}
+
+.btn-check:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.btn-check:active {
+  transform: scale(0.97);
+}
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog-overlay[hidden] {
+  display: none;
+}
+
+.dialog {
+  position: relative;
+  width: 760px;
+  max-width: 90%;
+  background: #fffaea;
+  border: 2px solid #1a1a1a;
+  border-radius: 20px;
+  padding: 44px 56px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.dialog h2 {
+  margin: 0 0 18px;
+  font-size: 40px;
+  color: #1a1a1a;
+}
+
+.dialog p {
+  margin: 0;
+  font-size: 31px;
+  line-height: 1.6;
+  color: #222222;
+}
+
+.btn-help-close {
+  position: absolute;
+  top: -22px;
+  inset-inline-end: -22px;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("assets/btn-help-close-normal.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.btn-help-close:hover,
+.btn-help-close:focus-visible {
+  background-image: url("assets/btn-help-close-hover.png");
+}
+
+.btn-help-close:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+/* ---------- Forward/back nav buttons ---------- */
+
+.nav-fwd,
+.nav-back {
+  position: absolute;
+  top: 935px;
+  width: 105px;
+  height: 105px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.nav-fwd {
+  left: 24px;
+}
+
+.nav-back {
+  right: 24px;
+}
+
+.nav-fwd img,
+.nav-back img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* same button asset as forward, mirrored to point the other way */
+.nav-back img {
+  transform: scaleX(-1);
+}
+
+.nav-fwd:hover,
+.nav-back:hover {
+  filter: brightness(1.08);
+}
+
+.nav-fwd:focus-visible,
+.nav-back:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.nav-fwd:active,
+.nav-back:active {
+  transform: scale(0.97);
+}
+
+.nav-fwd:disabled,
+.nav-back:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.nav-fwd[hidden],
+.nav-back[hidden] {
+  display: none;
+}
+
+.nav-fwd.nav-pulse {
+  animation: nav-pulse 1s ease-in-out infinite;
+}
+
+@keyframes nav-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-fwd.nav-pulse {
+    animation: none;
+  }
+}
+
+/* ---------- Video placeholder screens ---------- */
+
+.videoscreen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+.video-el {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  z-index: 12;
+  background: rgba(15, 39, 64, 0.86);
+  color: #fff;
+  font-size: 60px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.video-play:hover {
+  background: #1d4a72;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.video-play:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.video-play.hidden {
+  display: none;
+}
+
+.video-cap {
+  position: absolute;
+  left: 50%;
+  bottom: 95px;
+  transform: translateX(-50%);
+  max-width: 1400px;
+  width: max-content;
+  padding: 12px 30px;
+  z-index: 11;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-size: 34px;
+  line-height: 1.35;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.video-cap:empty {
+  display: none;
+}
+
+.video-cap.cc-hidden {
+  display: none;
+}
+
+/* custom video control bar (bottom, LTR media-control order) */
+.vctrls {
+  position: absolute;
+  left: 150px;
+  right: 150px;
+  bottom: 0;
+  z-index: 14;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 22px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.32));
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.vctrls.hidden {
+  display: none;
+}
+
+/* Auto-fade during playback once the pointer has been idle a moment --
+   kept as a separate class from .hidden (display:none) so it can transition
+   and so it's never applied once the clip has ended (see initVideoScreen). */
+.vctrls.vctrls-idle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vctrls {
+    transition: none;
+  }
+}
+
+.vc-btn {
+  flex: 0 0 auto;
+  height: 42px;
+  min-width: 42px;
+  padding: 0 10px;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vc-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.vc-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.vc-cc {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  border: 2px solid #fff;
+  padding: 0 12px;
+}
+
+.vc-cc.is-off {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.vc-time {
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: 17px;
+  min-width: 46px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.vc-seek {
+  flex: 1 1 auto;
+  height: 6px;
+  cursor: pointer;
+  accent-color: var(--color-focus);
+}
+
+.vc-vol {
+  flex: 0 0 92px;
+  width: 92px;
+  height: 6px;
+  cursor: pointer;
+  accent-color: var(--color-focus);
+}
+
+/* ---------- Screen 2b: fill-in-the-blank question ---------- */
+
+.q-text--lead {
+  font-size: 34px;
+  margin-top: 6px;
+}
+
+.q-fill {
+  align-self: stretch;
+  margin: 0;
+  font-size: 30px;
+  line-height: 2.3;
+  color: #222222;
+}
+
+.q-fill p {
+  margin: 0 0 4px;
+}
+
+.fill-select {
+  font-family: inherit;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  text-align-last: center;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 8px 30px;
+  margin: 0 6px;
+  min-width: 140px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-image: url("assets/chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 18px 18px;
+}
+
+.fill-select:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.fill-select.correct {
+  border-color: var(--color-correct);
+  background-color: #eaf7ee;
+}
+
+.fill-select.wrong {
+  border-color: var(--color-incorrect);
+  background-color: #fdecea;
+}
+
+.fill-select.revealed {
+  border-color: var(--color-focus);
+  background-color: #eaf1fb;
+}
+
+.fill-select:disabled {
+  opacity: 0.85;
+  cursor: default;
+}
+
+.fill-select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.fill-badge {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+  margin-inline-start: -10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.fill-select-wrap.correct .fill-badge,
+.fill-select-wrap.wrong .fill-badge,
+.fill-select-wrap.revealed .fill-badge {
+  display: flex;
+}
+
+.fill-select-wrap.correct .fill-badge {
+  background-color: var(--color-correct);
+}
+
+.fill-select-wrap.wrong .fill-badge {
+  background-color: var(--color-incorrect);
+}
+
+/* A blank the learner never got right on either attempt, auto-filled by the
+   exhausted-attempts reveal -- blue + an eye icon instead of green + a
+   checkmark, kept visually distinct from a blank the learner solved
+   themselves. */
+.fill-select-wrap.revealed .fill-badge {
+  background-color: var(--color-focus);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+
+/* ---------- Screen 2b: avatar + speech bubble ---------- */
+
+.q1b-avatar {
+  position: absolute;
+  left: 211px;
+  top: 226px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.q1b-bubble {
+  position: absolute;
+  left: 34px;
+  top: 227px;
+  width: 356px;
+  height: 186px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 54px 42px;
+  background-image: url("assets/B1.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+
+.q1b-bubble-text {
+  position: relative;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+
+/* ---------- Screen 2b: check button + feedback panel positions ---------- */
+
+.btn-check--q1a,
+.btn-check--q1b,
+.btn-check--q3,
+.btn-check--q5,
+.btn-check--q6 {
+  top: auto;
+  left: 167px;
+  bottom: 180px;
+}
+
+.feedback-panel--q1b {
+  left: 746px;
+  bottom: auto;
+  top: 738px;
+  width: 520px;
+}
+
+/* ---------- Screen 2a: fish-stock chart + fill-in-the-blank ---------- */
+
+.q2a-body {
+  align-items: stretch;
+}
+
+.q2a-chart-wrap {
+  position: relative;
+  order: 2;
+  direction: ltr;
+  flex-shrink: 0;
+  width: 620px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  transform: translateY(-162px);
+}
+
+.q2a-chart-caption {
+  position: absolute;
+  top: -87px;
+  left: 28px;
+  width: 597px;
+  background: var(--color-card-bg);
+  border: 3px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  z-index: 4;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.q2a-xaxis-label {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 4px;
+}
+
+.q2a-chart-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  align-self: center;
+  margin-top: -22px;
+  flex-shrink: 0;
+  width: 116px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+
+.q2a-chart-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.q2a-chart-main {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.q2a-yaxis {
+  position: relative;
+  height: 482px;
+  flex-shrink: 0;
+  margin-inline-end: 4px;
+  font-size: 27px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.q2a-yaxis-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(40px);
+}
+
+.q2a-yaxis-track span {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.q2a-chart-img {
+  width: 480px;
+  height: 482px;
+  object-fit: contain;
+}
+
+.q2a-xaxis {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline-start: 33px;
+  padding-inline-end: 17px;
+  margin-top: 4px;
+  font-size: 27px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.q2a-fill {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Screen 5: dropdown fill-in + zoomable image gallery ---------- */
+
+.q5-body {
+  align-items: center;
+}
+
+.q5-fill {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+.q5-gallery {
+  order: 2;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  transform: translateY(-162px);
+}
+
+.q5-images {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.q5-img-btn {
+  display: block;
+  width: 384px;
+  height: 238px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: transparent;
+  transition: transform 0.15s;
+}
+
+.q5-img-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.q5-img-btn:hover {
+  transform: scale(1.02);
+}
+
+.q5-img-btn:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.q5-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 90px;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.q5-hint-icon {
+  width: 56px;
+  height: 56px;
+}
+
+/* Shared .feedback-panel's default spot (left:182/bottom:309) lands on top of
+   the gallery images -- move it under the fill text instead, which has clear
+   room below it inside the card. */
+.feedback-panel--q5 {
+  left: 730px;
+  bottom: auto;
+  top: 761px;
+  width: 480px;
+}
+
+/* ---------- Shared image-zoom modal ---------- */
+
+.img-zoom-panel {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.img-zoom-full {
+  display: block;
+  width: 1100px;
+  max-width: 90vw;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* ---------- Screen 6: sentence-ordering drag-and-drop ---------- */
+
+.q6-body {
+  align-items: stretch;
+}
+
+.q6-tray {
+  order: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 560px;
+  flex-shrink: 0;
+}
+
+.q6-table {
+  order: 1;
+  flex: 1;
+  height: 526px;
+  margin: 0;
+  border-collapse: collapse;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+.q6-table th {
+  height: 64px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  background: #ffffff;
+}
+
+.q6-table th:first-child {
+  width: 130px;
+}
+
+.q6-table th:last-child {
+  background-image: url("assets/q6 answer background.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.q6-table tbody tr {
+  height: 92.4px;
+}
+
+.q6-table td {
+  border: 1px solid #1a1a1a;
+  padding: 0;
+  overflow: hidden;
+}
+
+.q6-order-num {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.q6-plank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  min-height: 84px;
+  padding: 14px 26px;
+  border: 0;
+  background-image: url("assets/q6 answer background.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.q6-plank[aria-pressed="true"] {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.q6-plank:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.q6-plank[draggable="true"] {
+  cursor: grab;
+}
+
+.q6-plank-text {
+  user-select: none;
+  pointer-events: none;
+}
+
+.q6-plank.dragging {
+  opacity: 0.4;
+}
+
+.q6-cell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 58px;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 29px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.q6-cell[data-item] {
+  background-image: url("assets/q6 answer background.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.q6-cell[aria-pressed="true"] {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.q6-cell:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.q6-cell[draggable="true"] {
+  cursor: grab;
+}
+
+.q6-cell.dragging {
+  opacity: 0.4;
+}
+
+.q6-cell.drag-over {
+  outline: 3px dashed var(--color-focus);
+  outline-offset: -3px;
+  background: #eaf3ff;
+}
+
+.q6-tray.drag-over {
+  outline: 3px dashed var(--color-focus);
+  outline-offset: -6px;
+  border-radius: 12px;
+}
+
+.q6-cell.correct::after,
+.q6-cell.wrong::after,
+.q6-cell.revealed::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.q6-cell.correct::after {
+  content: "\2713";
+  background-color: var(--color-correct);
+}
+
+.q6-cell.wrong::after {
+  content: "\2715";
+  background-color: var(--color-incorrect);
+}
+
+.q6-cell.revealed::after {
+  background-color: var(--color-focus);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+
+.q6-cell:disabled {
+  cursor: default;
+  opacity: 0.95;
+}
+
+
+.btn-check--q2a {
+  top: auto;
+  left: 167px;
+  bottom: 180px;
+}
+
+.feedback-panel--q2a {
+  left: 746px;
+  bottom: auto;
+  top: 738px;
+  width: 520px;
+}
+
+/* ---------- Screen 2b: single-choice with per-distractor feedback ---------- */
+
+.q2b-img {
+  order: 2;
+  flex-shrink: 0;
+  width: 412px;
+  height: 400px;
+  transform: translateY(-100px);
+}
+
+.q2b-options {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.q-opt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  text-align: right;
+  cursor: pointer;
+}
+
+.q-opt-text {
+  font-size: 30px;
+  line-height: 1.4;
+  color: #1f2a30;
+}
+
+.q-radio {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 3px solid #64748b;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.q-opt:hover .q-radio {
+  background: #eef1f4;
+}
+
+.q-opt.selected .q-radio {
+  border-color: #64748b;
+  background: #64748b;
+}
+
+.q-opt.correct .q-radio {
+  border-color: var(--color-correct);
+  background: var(--color-correct);
+}
+
+.q-opt.correct .q-radio::after {
+  content: "\2713";
+  animation: q-mark-pop 0.32s ease both;
+}
+
+.q-opt.wrong .q-radio {
+  border-color: var(--color-incorrect);
+  background: var(--color-incorrect);
+}
+
+.q-opt.wrong .q-radio::after {
+  content: "\2715";
+  animation: q-mark-pop 0.32s ease both;
+}
+
+/* The correct option on a final wrong attempt -- the learner never picked
+   it themselves, so it's marked as system-revealed (blue + eye) rather than
+   reusing the "learner got it right" green checkmark. */
+.q-opt.revealed .q-radio {
+  border-color: var(--color-focus);
+  background: var(--color-focus);
+}
+
+.q-opt.revealed .q-radio::after {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  animation: q-mark-pop 0.32s ease both;
+}
+
+@keyframes q-mark-pop {
+  0% { opacity: 0; transform: scale(0.2); }
+  60% { opacity: 1; transform: scale(1.18); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .q-opt.correct .q-radio::after,
+  .q-opt.wrong .q-radio::after,
+  .q-opt.revealed .q-radio::after {
+    animation: none;
+  }
+}
+
+.q-opt:disabled {
+  cursor: default;
+}
+
+.q-opt:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.btn-check--q2b {
+  top: auto;
+  left: 167px;
+  bottom: 180px;
+}
+
+.feedback-panel--q2b {
+  left: 688px;
+  bottom: auto;
+  top: 700px;
+  width: 1000px;
+}
+
+.feedback-panel--q2b .feedback-text {
+  font-size: 30px;
+  line-height: 1.35;
+}
+
+/* ---------- Screens 7a/7b: single-choice, same skin/placement as 2b ---------- */
+
+.q7a-img,
+.q7b-img {
+  order: 2;
+  flex-shrink: 0;
+  width: 412px;
+  height: 400px;
+  transform: translateY(-100px);
+}
+
+.q7b-img {
+  transform: translateY(-170px);
+}
+
+.q7a-options,
+.q7b-options {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.btn-check--q7a,
+.btn-check--q7b {
+  top: auto;
+  left: 167px;
+  bottom: 180px;
+}
+
+.feedback-panel--q7a,
+.feedback-panel--q7b {
+  left: 688px;
+  bottom: auto;
+  top: 700px;
+  width: 1000px;
+}
+
+.feedback-panel--q7a {
+  width: 500px;
+}
+
+.feedback-panel--q7b {
+  top: 740px;
+}
+
+.feedback-panel--q7a .feedback-text,
+.feedback-panel--q7b .feedback-text {
+  font-size: 30px;
+  line-height: 1.35;
+}
+
+/* ---------- Screen 3: cause -> effect matching table ---------- */
+
+.q3-table {
+  width: 952px;
+  margin: 0;
+  border-collapse: collapse;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  table-layout: fixed;
+  flex-shrink: 0;
+}
+
+.q3-table th {
+  width: 50%;
+  height: 64px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  background: #ffffff;
+}
+
+.q3-table tbody tr {
+  height: 150px;
+}
+
+.q3-table td {
+  height: 150px;
+  border: 1px solid #1a1a1a;
+  padding: 0;
+  overflow: hidden;
+}
+
+.q3-table td.q3-fact-cell {
+  position: relative;
+  z-index: 3;
+  overflow: visible;
+}
+
+/* Paint order for table cells otherwise follows DOM order, which would let
+   the answer column (and the row below) clip a bleeding photo's corners --
+   promoting each fact cell with a tiered z-index (top row highest) makes it
+   paint above its row neighbor and the row(s) below it. */
+.q3-table tbody tr:nth-child(1) .q3-fact-cell { z-index: 5; }
+.q3-table tbody tr:nth-child(2) .q3-fact-cell { z-index: 4; }
+.q3-table tbody tr:nth-child(3) .q3-fact-cell { z-index: 3; }
+
+.q3-fact {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  height: 100%;
+  padding: 10px;
+}
+
+.q3-fact-text {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.q3-fact-photo-slot {
+  position: relative;
+  z-index: 2;
+  width: 150px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.q3-fact-photo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  transform: translate(-50%, -50%) rotate(-3deg);
+}
+
+.q3-table tbody tr:nth-child(2) .q3-fact-photo {
+  transform: translate(-50%, -50%) rotate(3deg);
+}
+
+.q3-answer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  border: 0;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1a1a1a;
+  text-align: center;
+  cursor: pointer;
+}
+
+.q3-answer[data-item] {
+  background: #fffaea;
+}
+
+.q3-answer[aria-pressed="true"] {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+  background: #eaf3ff;
+}
+
+.q3-answer:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.q3-answer[draggable="true"] {
+  cursor: grab;
+}
+
+.q3-answer.dragging {
+  opacity: 0.4;
+}
+
+.q3-answer-cell.drag-over .q3-answer,
+.q3-answer.drag-over {
+  outline: 3px dashed var(--color-focus);
+  outline-offset: -3px;
+  background: #eaf3ff;
+}
+
+.q3-answer.correct {
+  background: #eaf7ee;
+}
+
+.q3-answer.wrong {
+  background: #fdecea;
+}
+
+.q3-answer.revealed {
+  background: #eaf1fb;
+}
+
+.q3-answer.correct::after,
+.q3-answer.wrong::after,
+.q3-answer.revealed::after {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.q3-answer.correct::after {
+  content: "\2713";
+  background-color: var(--color-correct);
+}
+
+.q3-answer.wrong::after {
+  content: "\2715";
+  background-color: var(--color-incorrect);
+}
+
+.q3-answer.revealed::after {
+  content: "";
+  background-color: var(--color-focus);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+
+.q3-answer:disabled {
+  cursor: default;
+  opacity: 0.95;
+}
+
+.q3-tray {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 540px;
+  margin-top: 64px;
+  flex-shrink: 0;
+}
+
+.q3-tray .pill {
+  width: 100%;
+  min-height: 122px;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+.q3-tray .pill-text {
+  font-size: 26px;
+  white-space: normal;
+}
+
+/* ---------- Screen 4: fact vs. opinion sort ---------- */
+
+#screen-q4 .stage-card {
+  height: 983px;
+  background-image: url("assets/q4 blob main.png");
+}
+
+/* The shared .feedback-panel's default spot (left:182/bottom:309) lands on
+   top of the sort columns now that this screen's card/columns are taller --
+   it would visually cover, and physically intercept pointer/drop events on,
+   the left column while "try again" is showing. Reuse the current-item
+   slot instead: by the time the check button is clickable the queue is
+   empty and .q4-current is already hidden, so the two never show at once. */
+/* Nested inside the feelings column (the smaller of the two once items are
+   sorted) so it sits in that column's own empty space instead of floating
+   over the check button / current-item area. */
+.feedback-panel--q4 {
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: 16px;
+  width: 500px;
+  transform: translateX(-50%);
+}
+
+.q4-table {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  margin-top: 14px;
+  flex: 1;
+  min-height: 0;
+}
+
+.q4-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 615px;
+  background: #ffffff;
+  border: 2px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.q4-col-head {
+  flex-shrink: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  background: #ffffff;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.q4-col-list {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.q4-col.drag-over {
+  outline: 3px dashed var(--color-focus);
+  outline-offset: -6px;
+  background: #eaf3ff;
+}
+
+/* Answer blobs: a plain rounded pill in the q4-blob teal, no speech-bubble
+   tail (the source assets q4 blob1/blob2.png carry a pointer we don't want). */
+.q4-blob {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #c7e7e2;
+  font-family: inherit;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1a1a1a;
+  text-align: center;
+  white-space: normal;
+}
+
+/* Same circled checkmark/X as the single-choice screen's .q-radio -- a
+   plain CSS circle with a colored fill, not an icon image. */
+.q4-blob-radio {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 3px solid #64748b;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.q4-blob.correct .q4-blob-radio {
+  border-color: var(--color-correct);
+  background: var(--color-correct);
+}
+
+.q4-blob.correct .q4-blob-radio::after {
+  content: "\2713";
+}
+
+.q4-blob.wrong .q4-blob-radio {
+  border-color: var(--color-incorrect);
+  background: var(--color-incorrect);
+}
+
+.q4-blob.wrong .q4-blob-radio::after {
+  content: "\2715";
+}
+
+/* A statement the learner never got into the right column on either
+   attempt, auto-placed by the exhausted-attempts reveal -- blue + an eye
+   icon instead of green + a checkmark. */
+.q4-blob.revealed .q4-blob-radio {
+  border-color: var(--color-focus);
+  background-color: var(--color-focus);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white' stroke='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+}
+
+/* .q4-blob-radio{display:flex} and the UA [hidden]{display:none} rule have
+   equal specificity -- without this, the later author rule silently wins
+   and the circle stays visible even while hidden. */
+.q4-blob-radio[hidden] {
+  display: none;
+}
+
+.q4-blob-text {
+  flex: 1;
+}
+
+.q4-col-list .q4-blob {
+  cursor: default;
+}
+
+.q4-col-list .q4-blob[draggable="true"] {
+  cursor: grab;
+}
+
+.q4-blob.dragging {
+  opacity: 0.4;
+}
+
+.q4-blob.correct {
+  background: #d9f0dc;
+  outline: 3px solid var(--color-correct);
+}
+
+.q4-blob.wrong {
+  background: #fbe2e0;
+  outline: 3px solid var(--color-incorrect);
+}
+
+.q4-blob.revealed {
+  background: #dbe8fb;
+  outline: 3px solid var(--color-focus);
+}
+
+.q4-current {
+  position: absolute;
+  left: 700px;
+  top: 947px;
+  z-index: 5;
+  width: 520px;
+}
+
+.q4-current[hidden] {
+  display: none;
+}
+
+.q4-current .q4-blob[draggable="true"] {
+  cursor: grab;
+}
+
+.q4-current .q4-blob.dragging {
+  opacity: 0.4;
+}
+
+/* ---------- Screen 8a: drag ideas into the open rulebook ---------- */
+
+.stage-card--q8a .q-content {
+  padding-bottom: 8px;
+}
+
+.q8a-source {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.q8a-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 335px;
+  gap: 10px;
+}
+
+.q8a-card-drag {
+  display: block;
+  width: 333px;
+  height: 181px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: grab;
+  transition: opacity 0.2s;
+}
+
+.q8a-card-drag:active {
+  cursor: grabbing;
+}
+
+.q8a-card-drag.dragging {
+  opacity: 0.4;
+}
+
+.q8a-card-drag--placed {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.q8a-card-drag:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.q8a-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.q8a-card-text {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.35;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.q8a-book {
+  position: absolute;
+  left: 50%;
+  top: 620px;
+  bottom: 15px;
+  transform: translateX(-50%);
+  width: 860px;
+  z-index: 2;
+}
+
+.q8a-book-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.3));
+}
+
+.q8a-slot {
+  position: absolute;
+  border: 3px dashed rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.q8a-slot:disabled {
+  cursor: default;
+}
+
+.q8a-slot:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.q8a-slot--1 {
+  left: 15%;
+  top: 10%;
+  width: 33%;
+  height: 36%;
+}
+
+.q8a-slot--2 {
+  left: 15%;
+  top: 52%;
+  width: 33%;
+  height: 36%;
+}
+
+.q8a-slot--3 {
+  left: 54%;
+  top: 10%;
+  width: 33%;
+  height: 36%;
+}
+
+.q8a-slot--4 {
+  left: 54%;
+  top: 52%;
+  width: 33%;
+  height: 36%;
+}
+
+.q8a-slot.drag-over {
+  border-color: var(--color-focus);
+  background: rgba(0, 95, 204, 0.15);
+}
+
+.q8a-slot.filled {
+  border-style: solid;
+  border-color: transparent;
+  background: transparent;
+}
+
+.q8a-slot.dragging {
+  opacity: 0.4;
+}
+
+.q8a-slot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.btn-check--q8a {
+  top: auto;
+  bottom: 20px;
+  left: 40px;
+}
+
+.feedback-panel--q8a {
+  bottom: 40px;
+  width: 460px;
+}
+
+/* ---------- Screen 8b: reveal -- picked ideas placed in the rulebook ---------- */
+
+.q8b-bubble {
+  position: absolute;
+  top: 29px;
+  right: 418px;
+  width: 516px;
+  z-index: 3;
+}
+
+.q8b-bubble-img {
+  width: 100%;
+  display: block;
+}
+
+.q8b-bubble-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 60px 46px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #2a1c0f;
+}
+
+.q8b-book-pics {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.q8b-pic {
+  position: absolute;
+  width: 209px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.q8b-pic--1 {
+  left: 641px;
+  top: 642px;
+  transform: rotate(-1deg);
+}
+
+.q8b-pic--2 {
+  left: 608px;
+  top: 802px;
+  transform: rotate(-3deg);
+}
+
+.q8b-pic--3 {
+  left: 1006px;
+  top: 650px;
+  transform: rotate(3deg);
+}
+
+.q8b-pic--4 {
+  left: 1021px;
+  top: 818px;
+  transform: rotate(-3deg);
+}
+
+/* ---------- Screen 9: closing wrap-up text ("before ending") ---------- */
+
+.before-ending-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 966px;
+  z-index: 2;
+}
+
+.before-ending-panel-img {
+  width: 109%;
+  display: block;
+}
+
+.before-ending-text {
+  position: absolute;
+  inset: 0;
+  padding: 20px 66px 70px;
+  text-align: right;
+  font-size: 32px;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+.before-ending-text p {
+  margin: 0 0 16px;
+}
+
+.before-ending-list {
+  list-style: none;
+  margin: 12px 0 20px;
+  padding: 0;
+  text-align: right;
+}
+
+.before-ending-list li {
+  margin-bottom: 4px;
+}
+
+.before-ending-list li::before {
+  content: "• ";
+}
+
+/* ---------- Screen 10: completion screen -- final score + exit ---------- */
+
+.ending-panel {
+  /* Centered via top/left + negative margin, not `transform` -- see
+     the .book rule above for why (keeps `transform` free for the
+     motion-system's float-in reveal on this element). */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -207px;
+  margin-left: -380px;
+  width: 760px;
+  height: 414px;
+  z-index: 2;
+}
+
+.ending-panel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ending-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 30px 70px;
+  text-align: center;
+  color: #1a1a1a;
+  /* Plain text, nothing clickable inside -- without this, this full-box overlay
+     sits on top of (and swallows clicks meant for) the close button's corner,
+     since the button's own -22px offset makes it overlap this box's top-left
+     corner (0,0 to 42,42) even though it visually pokes outside the card. */
+  pointer-events: none;
+}
+
+.ending-line1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.ending-score-line {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.ending-line3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* ---------- DEV nav bar (screen jump tool, matches index_dev.html) ---------- */
+
+.dev-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: #0f2740;
+  font-family: Assistant, Arial, sans-serif;
+  font-size: 15px;
+}
+
+.dev-bar b {
+  font-size: 16px;
+  color: #eee;
+}
+
+.dev-bar span {
+  color: #9fb6cc;
+}
+
+.dev-bar button,
+.dev-bar input {
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #274866;
+  background: #14314c;
+  color: #dceaf6;
+  cursor: pointer;
+}
+
+.dev-bar input {
+  width: 70px;
+  text-align: center;
+  cursor: text;
+}
+

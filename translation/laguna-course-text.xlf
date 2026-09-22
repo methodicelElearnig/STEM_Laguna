@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="he" target-language="en" datatype="html" original="index.html">
+    <body>
+
+      <!-- ===== Dev/QA bar (developer tool, likely hidden from learners) ===== -->
+      <trans-unit id="dev-bar-title">
+        <source>בדיקת גשר QA:</source>
+        <note>Developer-only QA bar label, top of page.</note>
+      </trans-unit>
+      <trans-unit id="dev-bar-label">
+        <source>מסכים שהתגלו:</source>
+        <note>Developer-only QA bar label.</note>
+      </trans-unit>
+      <trans-unit id="dev-bar-prev">
+        <source>◀ הקודם</source>
+        <note>Developer-only QA bar button ("Previous").</note>
+      </trans-unit>
+      <trans-unit id="dev-bar-next">
+        <source>הבא ▶</source>
+        <note>Developer-only QA bar button ("Next").</note>
+      </trans-unit>
+
+      <!-- ===== Shared strings reused across many screens ===== -->
+      <trans-unit id="shared-progress-aria">
+        <source>התקדמות בשאלון</source>
+        <note>aria-label on the question-progress dot row; identical on every question screen (q1-q8a).</note>
+      </trans-unit>
+      <trans-unit id="shared-btn-help">
+        <source>עזרה</source>
+        <note>"Help" button label / help dialog sr-only heading; reused on screens q1, q1b, q6.</note>
+      </trans-unit>
+      <trans-unit id="shared-help-close-aria">
+        <source>סגור חלון עזרה</source>
+        <note>aria-label on the help dialog's close button; reused on screens q1, q1b, q6.</note>
+      </trans-unit>
+      <trans-unit id="shared-nav-continue-aria">
+        <source>המשך</source>
+        <note>aria-label "Continue", used on the forward-navigation arrow button on nearly every screen.</note>
+      </trans-unit>
+      <trans-unit id="shared-nav-back-aria">
+        <source>חזרה</source>
+        <note>aria-label "Back", used on the back-navigation arrow button on nearly every screen.</note>
+      </trans-unit>
+      <trans-unit id="shared-btn-check">
+        <source>בדיקה</source>
+        <note>"Check answer" button label, identical on every question screen.</note>
+      </trans-unit>
+      <trans-unit id="shared-video-play-aria">
+        <source>נגן את הסרטון</source>
+        <note>aria-label "Play the video", the big play button; identical on all 5 video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-vc-play-pause-aria">
+        <source>נגן או השהה</source>
+        <note>aria-label "Play or pause", video control bar; identical on all video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-vc-seek-aria">
+        <source>סרגל התקדמות</source>
+        <note>aria-label "Progress bar" (seek slider), video control bar; identical on all video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-vc-cc-aria">
+        <source>הצגת כתוביות</source>
+        <note>aria-label "Show captions", CC toggle button; identical on all video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-vc-mute-aria">
+        <source>השתקה</source>
+        <note>aria-label "Mute", video control bar; identical on all video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-vc-vol-aria">
+        <source>עוצמת שמע</source>
+        <note>aria-label "Volume", video control bar; identical on all video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-vc-fullscreen-aria">
+        <source>מסך מלא</source>
+        <note>aria-label "Full screen", video control bar; identical on all video screens.</note>
+      </trans-unit>
+      <trans-unit id="shared-item-tray-aria">
+        <source>פריטים למיון</source>
+        <note>aria-label "Items to sort", drag-and-drop tray; used on q1a and q3.</note>
+      </trans-unit>
+      <trans-unit id="shared-select-placeholder">
+        <source>בחרו</source>
+        <note>Default disabled placeholder option ("Choose") inside every fill-in-the-blank dropdown (q1b, q2a, q5).</note>
+      </trans-unit>
+
+      <!-- ===== Screen: opening ===== -->
+      <trans-unit id="opening-logo-alt">
+        <source>משרד החינוך, מינהל חדשנות וטכנולוגיה</source>
+        <note>Alt text of the Ministry of Education logo.</note>
+      </trans-unit>
+      <trans-unit id="opening-title">
+        <source>ברוכים הבאים לפעילות – התעלומה בלגונה של מארובו!</source>
+      </trans-unit>
+      <trans-unit id="opening-body">
+        <source>ברגע שתלחצו על כפתור ההתחלה, תגיעו ללגונת מארובו שבאוקיינוס השקט, שם תמתין לכם תעלומה סביבתית הקשורה למשאבי טבע. תושבי הכפר זקוקים לעזרתכם! במהלך הפעילות תכירו את סיפורו של הכפר, תתרגלו מיומנות חשובה הקשורה בקבלת החלטות, ותקבלו החלטות שישפיעו על עתיד הלגונה ותושביה.</source>
+      </trans-unit>
+      <trans-unit id="opening-cta">
+        <source>צאו לדרך, הלגונה מחכה!</source>
+      </trans-unit>
+      <trans-unit id="btn-continue-opening">
+        <source>התחילו</source>
+        <note>"Start" button label on the opening screen.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: video-intro (video 1 captions) ===== -->
+      <trans-unit id="video-intro-caption-01">
+        <source>מאיה ואלון שמחו להצטרף מידי פעם למסעות עם הוריהם חוקרי הטבע</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-02">
+        <source>הפעם היעד שלהם מיוחד ויפה מתמיד:</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-03">
+        <source>לגונת מארובו שבאוקיינוס השקט, מקום שנראה כמו גן-עדן מושלם.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-04">
+        <source>מידי בוקר, המשפחה יוצאת לטייל על החוף</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-05">
+        <source>אבל הבוקר משהו לא היה כשורה...</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-06">
+        <source>סירות הדייגים חזרו מהים כמעט ריקות.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-07">
+        <source>פתאום נשמעו קולות רמים מכיוון בית המועצה של הכפר.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-08">
+        <source>ויכוח סוער היה בעיצומו.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-09">
+        <source>אנחנו חייבים לדוג יותר, המשפחות שלנו רעבות</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-10">
+        <source>אנחנו חייבים לדוג פחות</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-11">
+        <source>אחרת בעוד כמה שנים לא ישארו דגים לאכול</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-12">
+        <source>לעודד יותר דיג או להפחית אותו?</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-13">
+        <source>אם נדוג פחות דגים, אנו עלולים לרעוב.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-14">
+        <source>מצד שני אם נדוג יותר מדי נפגע באוכלוסיית הדגים.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-15">
+        <source>הדייגים, התושבים וטובת הלגונה חשובים לי. מה תהיה הבחירה הנכונה?</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-16">
+        <source>מאיה ואלון מחליפים מבטים.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-17">
+        <source>הם נזכרים במה שלמדו בבית הספר.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-18">
+        <source>אנחנו לא מכירים את הלגונה, אבל אנחנו יודעים איך לאסוף מידע</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-19">
+        <source>לבחון עובדות, תוצאות שנאספו ולהשוות בין פתרונות.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-20">
+        <source>נשמח להשתתף במציאת הפתרון.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-21">
+        <source>ראש הכפר שכבר מכיר היטב את ההורים חוקרי הטבע,</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-22">
+        <source>שמח על הכוונה הטובה של הילדים ומחליט לתת להם תפקיד מיוחד.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-23">
+        <source>מאיה ואלון, אני ממנה אתכם ליועצים הצעירים של המועצה.</source>
+      </trans-unit>
+      <trans-unit id="video-intro-caption-24">
+        <source>בדקו את העובדות והמליצו לנו מה לעשות.</source>
+      </trans-unit>
+
+      <!-- ===== Screen: q1 (Question 1a) ===== -->
+      <trans-unit id="q1-heading">
+        <source>שאלה 1א:</source>
+      </trans-unit>
+      <trans-unit id="q1-text">
+        <source>עזרו למאיה ואלון, ומיינו את משאבי הטבע של הלגונה לתיבות הנכונות:</source>
+      </trans-unit>
+      <trans-unit id="q1-text-bold">
+        <source>גררו כל משאב לתיבה המתאימה:</source>
+      </trans-unit>
+      <trans-unit id="q1-table-header-deplete">
+        <source>משאבים מִתְכַּלִּים</source>
+        <note>Sort-table column header ("Depletable resources"); contains Hebrew niqqud (vowel points) — preserve exactly.</note>
+      </trans-unit>
+      <trans-unit id="q1-table-header-renew">
+        <source>משאבים מִתְחַדְּשִׁים</source>
+        <note>Sort-table column header ("Renewable resources"); contains Hebrew niqqud (vowel points) — preserve exactly.</note>
+      </trans-unit>
+      <trans-unit id="q1-help-desc">
+        <source>משאב מתכלה נמצא בטבע בכמות מוגבלת, והיווצרותו מחדש לוקחת מליוני שנים. משאב מתחדש נוצר בטבע באופן קבוע ובקצב מהיר.</source>
+        <note>Text inside the "help" popup dialog on screen q1.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: q1b (Question 1b) ===== -->
+      <trans-unit id="q1b-heading">
+        <source>שאלה 1ב:</source>
+      </trans-unit>
+      <trans-unit id="q1b-text-intro">
+        <source>לאחר מיון סוגי המשאבים, הביט אלון מופתע במאיה וטען: "אם דגים הם משאב מתחדש, אז אין סיכוי שהם ייעלמו".</source>
+      </trans-unit>
+      <trans-unit id="q1b-text-bold">
+        <source>עזרו למאיה להסביר לאלון באילו תנאים הטענה שלו נכונה.</source>
+      </trans-unit>
+      <trans-unit id="q1b-text-lead">
+        <source>השלימו את הקטע שלפניכם:</source>
+      </trans-unit>
+      <trans-unit id="q1b-fill-passage">
+        <source>דגים נחשבים למשאב טבע ___. יחד עם זאת, אם קצב הדיג של האדם יהיה גבוה ביחס לקצב ההתרבות הטבעי של הדגים, מספר הדגים ___ והם עלולים ___.</source>
+        <note>Fill-in-the-blank passage spanning several &lt;p&gt; tags; each ___ marks the position of a &lt;select&gt; dropdown. Dropdown 1 options: מתחדש / מתכלה (correct: מתחדש). Dropdown 2 options: יקטן / יגדל (correct: יקטן). Dropdown 3 options: להיעלם / להתרבות (correct: להיעלם). See trans-units q1b-opt-* for the individual option words.</note>
+      </trans-unit>
+      <trans-unit id="q1b-opt-mitchadesh">
+        <source>מתחדש</source>
+        <note>Dropdown option word ("renewable"), q1b dropdown 1; also reused as the correct-answer value.</note>
+      </trans-unit>
+      <trans-unit id="q1b-opt-mitkale">
+        <source>מתכלה</source>
+        <note>Dropdown option word ("depletable"), q1b dropdown 1.</note>
+      </trans-unit>
+      <trans-unit id="q1b-opt-yikatan">
+        <source>יקטן</source>
+        <note>Dropdown option word ("will decrease"), q1b dropdown 2.</note>
+      </trans-unit>
+      <trans-unit id="q1b-opt-yigdal">
+        <source>יגדל</source>
+        <note>Dropdown option word ("will grow"), q1b dropdown 2.</note>
+      </trans-unit>
+      <trans-unit id="q1b-opt-leheialem">
+        <source>להיעלם</source>
+        <note>Dropdown option word ("to disappear"), q1b dropdown 3.</note>
+      </trans-unit>
+      <trans-unit id="q1b-opt-lehitrabot">
+        <source>להתרבות</source>
+        <note>Dropdown option word ("to multiply"), q1b dropdown 3.</note>
+      </trans-unit>
+      <trans-unit id="q1b-avatar-alt">
+        <source>מאיה ואלון</source>
+        <note>Alt text of the kids' avatar image.</note>
+      </trans-unit>
+      <trans-unit id="q1b-bubble-quote">
+        <source>אם דגים הם משאב מתחדש, אז אין סיכוי שהם ייעלמו</source>
+        <note>Speech-bubble quote (restates the claim from q1b-text-intro).</note>
+      </trans-unit>
+      <trans-unit id="q1b-help-desc">
+        <source>כדי שמשאב מתחדש לא ייגמר, חייבים לתת לטבע מספיק זמן לייצר אותו מחדש. אם קצב הצריכה של בני האדם גבוה מקצב ההתחדשות הטבעי, כמות המשאב תלך ותקטן.</source>
+        <note>Text inside the "help" popup dialog on screen q1b.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: video-q1q2 (no captions filled in) ===== -->
+
+      <!-- ===== Screen: q2a (Question 2a) ===== -->
+      <trans-unit id="q2a-heading">
+        <source>שאלה 2א:</source>
+      </trans-unit>
+      <trans-unit id="q2a-text">
+        <source>בתיק החירום, מצאו מאיה ואלון דפים המתעדים מחקרים וגרפים שונים.&lt;br&gt;באחד הדפים הם ראו את הגרף המוצג.</source>
+        <note>Contains a &lt;br&gt; line break between the two sentences.</note>
+      </trans-unit>
+      <trans-unit id="q2a-text-lead">
+        <source>התבוננו בגרף והשלימו את המילים החסרות:</source>
+      </trans-unit>
+      <trans-unit id="q2a-chart-caption">
+        <source>משקל הדגה הכולל הנמדד בלגונה לאורך שנים</source>
+        <note>Caption above the chart.</note>
+      </trans-unit>
+      <trans-unit id="q2a-chart-title">
+        <source>משקל הדגה הכולל בלגונה (בטון)</source>
+        <note>Chart title.</note>
+      </trans-unit>
+      <trans-unit id="q2a-xaxis-label">
+        <source>שנים</source>
+        <note>Chart x-axis label ("Years").</note>
+      </trans-unit>
+      <trans-unit id="q2a-fill-passage">
+        <source>בשנת 2010 נמדדו ___ טונות של דגים בלגונה. בשנת 2018 נמדדו ___ טונות של דגים בלגונה. בשנת 2026 נמדדו ___ טונות של דגים בלגונה. מהתוצאות האלו ניתן להסיק כי במהלך השנים חלה ___ בכמות הדגים בלגונה.</source>
+        <note>Fill-in-the-blank passage spanning 4 separate &lt;p&gt; tags, each ___ marks a &lt;select&gt; dropdown. Dropdowns 1-3 options are the numeric values 50/150/300/400/500 (skipped here, non-translatable numbers). Dropdown 4 options: ירידה / עלייה (correct: ירידה) — see q2a-opt-* units.</note>
+      </trans-unit>
+      <trans-unit id="q2a-opt-yerida">
+        <source>ירידה</source>
+        <note>Dropdown option word ("decrease"), q2a dropdown 4 (correct answer).</note>
+      </trans-unit>
+      <trans-unit id="q2a-opt-aliya">
+        <source>עלייה</source>
+        <note>Dropdown option word ("increase"), q2a dropdown 4.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: q2b (Question 2b) ===== -->
+      <trans-unit id="q2b-heading">
+        <source>שאלה 2ב:</source>
+      </trans-unit>
+      <trans-unit id="q2b-text">
+        <source>חוקרי טבע חשוב לדעת מהי כמות הדגים (בטונות) בלגונה כולה, אך הם אינם יכולים לתפוס ולשקול אחד-אחד את כל הדגים שבלגונה.&lt;br&gt;מה עושים החוקרים כדי לקבל הערכה מדעית מדויקת?</source>
+        <note>Contains a &lt;br&gt; line break between the two sentences.</note>
+      </trans-unit>
+      <trans-unit id="q2b-text-bold">
+        <source>סמנו את התשובה הנכונה.</source>
+      </trans-unit>
+      <trans-unit id="q2b-img-alt">
+        <source>דייג ובנו בוחנים ארגז דגים על החוף</source>
+      </trans-unit>
+      <trans-unit id="q2b-opt-0-text">
+        <source>סופרים את כל הדגים שכל הדייגים דגו באותו היום.</source>
+      </trans-unit>
+      <trans-unit id="q2b-opt-0-feedback">
+        <source>חשבו, האם מספר הדגים שנתפסו על ידי הדייגים שווה לכל מניין הדגים בלגונה?</source>
+        <note>Feedback shown if this (incorrect) option is chosen.</note>
+      </trans-unit>
+      <trans-unit id="q2b-opt-1-text">
+        <source>סופרים את הדגים רק באזור אחד ליד החוף, ומכפילים את המספר שיצא בגודל הלגונה.</source>
+      </trans-unit>
+      <trans-unit id="q2b-opt-1-feedback">
+        <source>חשבו, האם מספר הדגים באזור אחד שווה למספרם גם באזורים אחרים בלגונה?</source>
+        <note>Feedback shown if this (incorrect) option is chosen.</note>
+      </trans-unit>
+      <trans-unit id="q2b-opt-2-text">
+        <source>משתמשים בנוסחה קבועה שקובעת שבכל לגונה בעולם יש תמיד אותה כמות של דגים.</source>
+      </trans-unit>
+      <trans-unit id="q2b-opt-2-feedback">
+        <source>חשבו, האם כל הלגונות זהות בגודל, בתנאים ובכמות היצורים החיים שבהן?</source>
+        <note>Feedback shown if this (incorrect) option is chosen.</note>
+      </trans-unit>
+      <trans-unit id="q2b-opt-3-text">
+        <source>מודדים את כמות הדגים בכמה אזורים שונים בלגונה, מחשבים את הממוצע ומכפילים אותו בגודל הלגונה.</source>
+        <note>The correct option.</note>
+      </trans-unit>
+      <trans-unit id="q2b-opt-3-feedback">
+        <source>דגימה של אזורים שונים נותנת תמונה מייצגת יותר של הלגונה כולה ומאפשרת להעריך את כמות הדגים בלגונה בצורה מדעית.</source>
+        <note>Feedback shown when the correct option is chosen.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: q3 (Question 3) ===== -->
+      <trans-unit id="q3-heading">
+        <source>שאלה 3:</source>
+      </trans-unit>
+      <trans-unit id="q3-text">
+        <source>בלגונה מתקיימים קשרים של תלות הדדית בין מספר גורמים: אם אוכלוסיית הדגים תיפגע – יפגעו גם היצורים החיים בלגונה ובני האדם החיים בכפר.</source>
+      </trans-unit>
+      <trans-unit id="q3-text-bold">
+        <source>גררו את הנזק שיגרם לשורה המתאימה, בעקבות ירידה במספר הדגים בלגונה.</source>
+      </trans-unit>
+      <trans-unit id="q3-table-header-factors">
+        <source>גורמים המושפעים מהנזק</source>
+        <note>Table column header.</note>
+      </trans-unit>
+      <trans-unit id="q3-table-header-damage">
+        <source>הנזק שיגרם</source>
+        <note>Table column header.</note>
+      </trans-unit>
+      <trans-unit id="q3-row-lagoon">
+        <source>הלגונה והדולפינים</source>
+        <note>Row label (split by &lt;br&gt; in the HTML).</note>
+      </trans-unit>
+      <trans-unit id="q3-row-fishermen">
+        <source>הדייגים ומשפחותיהם</source>
+        <note>Row label (split by &lt;br&gt; in the HTML).</note>
+      </trans-unit>
+      <trans-unit id="q3-row-village">
+        <source>ראש הכפר והמועצה</source>
+        <note>Row label (split by &lt;br&gt; in the HTML).</note>
+      </trans-unit>
+
+      <!-- ===== Screen: q4 (Question 4) ===== -->
+      <trans-unit id="q4-heading">
+        <source>שאלה 4:</source>
+      </trans-unit>
+      <trans-unit id="q4-text">
+        <source>במועצת הכפר נשמעו קולות רבים. כדי לקבל החלטה חכמה, מאיה ואלון, שראש הכפר מינה אותם ליועצים צעירים, צריכים להסתמך רק על עובדות שאפשר למדוד (עובדות מדידות) ולא על דעות או הרגשה אישית.</source>
+      </trans-unit>
+      <trans-unit id="q4-text-bold">
+        <source>בתחתית הטבלה תמצאו מספר היגדים, גיררו את ההיגדים לעובדות מדידות ולדעות או הרגשות.</source>
+      </trans-unit>
+      <trans-unit id="q4-col-facts">
+        <source>עובדות מדידות</source>
+        <note>Drag-and-drop column header ("Measurable facts").</note>
+      </trans-unit>
+      <trans-unit id="q4-col-feelings">
+        <source>דעות או הרגשות</source>
+        <note>Drag-and-drop column header ("Opinions or feelings").</note>
+      </trans-unit>
+
+      <!-- ===== Screen: video1 (video placeholder 1 captions) ===== -->
+      <trans-unit id="video1-caption-01">
+        <source>לאחר שריכזו את העובדות שעומדות לרשותם בחקירה,</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-02">
+        <source>מאיה ואלון יצאו לסיור עם ראש הכפר.</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-03">
+        <source>כדי לשמור על הגודל של אוכלוסיית הדגים בלגונה</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-04">
+        <source>חשוב לאפשר לדגים הצעירים לגדול.</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-05">
+        <source>הדגים הבוגרים הם אלו שמתרבים</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-06">
+        <source>ומביאים צאצאים חדשים, ובכך מאפשרים את המשך קיום הדגים בלגונה</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-07">
+        <source>עכשיו אני מבין, דיג של דגים צעירים בלגונה</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-08">
+        <source>מונע מהם להתרבות ולהעמיד צאצאים</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-09">
+        <source>בדיוק כך, ושימו לב שכל הדגים גדלים עם הזמן</source>
+      </trans-unit>
+      <trans-unit id="video1-caption-10">
+        <source>לכן דגים צעירים קטנים יותר בממדיהם מהדגים הבוגרים</source>
+      </trans-unit>
+
+      <!-- ===== Screen: q5 (Question 5) ===== -->
+      <trans-unit id="q5-heading">
+        <source>שאלה 5:</source>
+      </trans-unit>
+      <trans-unit id="q5-text">
+        <source>מאיה ואלון הוציאו מתוך התיק שתי רשתות דיג ופרסו אותן. אלון הבחין כי אומנם הרשתות זהות בגודלן ובחומר ממנו הן עשויות, אך ישנו הבדל אחד בולט ביניהן. התבוננו בתמונות כדי להבין כיצד השוני בגודל החורים ברשתות משפיע על גודל הדגים הנתפסים.</source>
+      </trans-unit>
+      <trans-unit id="q5-text-lead">
+        <source>השלימו את המילים החסרות:</source>
+      </trans-unit>
+      <trans-unit id="q5-fill-passage">
+        <source>ככל שהחורים ברשת ___ יותר, כך הדגים ___ מצליחים לצאת דרך החורים, והדגים ___ נתפסים ברשת. ולכן ככל שהחורים ברשת ___ יותר, כך יותר דגים – גדולים וקטנים – נתפסים ברשת.</source>
+        <note>Fill-in-the-blank passage spanning 3 &lt;p&gt; tags, each ___ marks a &lt;select&gt; dropdown. Dropdown 1 options: גדולים / קטנים (correct: גדולים). Dropdown 2 options: הגדולים / הקטנים (correct: הקטנים). Dropdown 3 options: הגדולים / הקטנים (correct: הגדולים). Dropdown 4 options: גדולים / קטנים (correct: קטנים). See q5-opt-* units for the option words.</note>
+      </trans-unit>
+      <trans-unit id="q5-opt-gdolim">
+        <source>גדולים</source>
+        <note>Dropdown option word ("big"), q5 dropdowns 1 and 4.</note>
+      </trans-unit>
+      <trans-unit id="q5-opt-ktanim">
+        <source>קטנים</source>
+        <note>Dropdown option word ("small"), q5 dropdowns 1 and 4.</note>
+      </trans-unit>
+      <trans-unit id="q5-opt-hagdolim">
+        <source>הגדולים</source>
+        <note>Dropdown option word ("the big [fish]"), q5 dropdowns 2 and 3.</note>
+      </trans-unit>
+      <trans-unit id="q5-opt-haktanim">
+        <source>הקטנים</source>
+        <note>Dropdown option word ("the small [fish]"), q5 dropdowns 2 and 3.</note>
+      </trans-unit>
+      <trans-unit id="q5-img-top-zoom-alt">
+        <source>רשת דיג עם חורים גדולים, ריקה</source>
+        <note>Zoomed-image alt text.</note>
+      </trans-unit>
+      <trans-unit id="q5-img-top-aria">
+        <source>הגדלת תמונה: רשת עם חורים גדולים</source>
+        <note>aria-label on the zoom button.</note>
+      </trans-unit>
+      <trans-unit id="q5-img-bottom-zoom-alt">
+        <source>רשת דיג עם חורים קטנים, עם דגים שנתפסו בה</source>
+        <note>Zoomed-image alt text.</note>
+      </trans-unit>
+      <trans-unit id="q5-img-bottom-aria">
+        <source>הגדלת תמונה: רשת עם חורים קטנים</source>
+        <note>aria-label on the zoom button.</note>
+      </trans-unit>
+      <trans-unit id="q5-hint">
+        <source>לחצו על התמונות להגדלה</source>
+        <note>Hint text next to the two net images.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: q6 (Question 6) ===== -->
+      <trans-unit id="q6-heading">
+        <source>שאלה 6:</source>
+      </trans-unit>
+      <trans-unit id="q6-text-bold">
+        <source>סדרו את המשפטים בסדר הנכון, כך שמאיה ואלון יוכלו לספק הסבר לראש הכפר על התהליך שהוביל למשבר של מחסור בדגים בכפר:</source>
+      </trans-unit>
+      <trans-unit id="q6-table-header-order">
+        <source>סדר</source>
+        <note>Table column header ("Order").</note>
+      </trans-unit>
+      <trans-unit id="q6-table-header-sentence-sr">
+        <source>משפט</source>
+        <note>Screen-reader-only column header ("Sentence").</note>
+      </trans-unit>
+      <trans-unit id="q6-tray-aria">
+        <source>משפטים למיון</source>
+        <note>aria-label "Sentences to sort" on the drag-and-drop tray.</note>
+      </trans-unit>
+      <trans-unit id="q6-help-desc">
+        <source>חשבו איזה אירוע הוביל לאירוע הבא.</source>
+        <note>Text inside the "help" popup dialog on screen q6.</note>
+      </trans-unit>
+
+      <!-- ===== Screen: video3 (video placeholder 3 captions) ===== -->
+      <trans-unit id="video3-caption-01">
+        <source>במועצת הכפר עלו כמה הצעות לפתרון הבעיה</source>
+      </trans-unit>
+      <trans-unit id="video3-caption-02">
+        <source>אשמח כעת להציג לכם את הפתרונות ולשמוע את דעתכם</source>
+      </trans-unit>
+
+      <!-- ===== Screen: q7a (Question 7a) ===== -->
+      <trans-unit id="q7a-heading">
+        <source>שאלה 7א:</source>
+      </trans-unit>
+      <trans-unit id="q7a-text">
+        <source>ראש הכפר קיבל כמה הצעות לפתרון בעיית הדגים בלגונה. כעת מאיה ואלון, היועצים צעירים, צריכים לבחור בהצעה הטובה ביותר.</source>
+      </trans-unit>
+      <trans-unit id="q7a-text-bold-1">
+        <source>באיזו הצעה עליהם לבחור?</source>
+      </trans-unit>
+      <trans-unit id="q7a-text-bold-2">
+        <source>בחרו את התשובה הנכונה:</source>
+      </trans-unit>
+      <trans-unit id="q7a-img-alt">
+        <source>ראש הכפר חושב, מאיה ואלון מביטים בו</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-0-text">
+        <source>ההצעה הקלה ביותר לביצוע.</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-0-feedback">
+        <source>קלות הביצוע לא בהכרח אומרת שההצעה תפתור את בעיית הדגים בצורה הטובה ביותר.</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-1-text">
+        <source>ההצעה שרוב תושבי הלגונה מעדיפים.</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-1-feedback">
+        <source>דעה פופולרית אינה בהכרח מבוססת על עובדות או נתונים אמיתיים על מצב הדגים בלגונה.</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-2-text">
+        <source>ההצעה שמתבססת על מידע שנאסף בלגונה.</source>
+        <note>The correct option.</note>
+      </trans-unit>
+      <trans-unit id="q7a-opt-2-feedback">
+        <source>החלטה המבוססת על מידע ונתונים שנאספו בלגונה היא הדרך המדעית והאמינה ביותר לפתור את הבעיה.</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-3-text">
+        <source>ההצעה שהציע הדייג בעל הניסיון הרב ביותר בלגונה.</source>
+      </trans-unit>
+      <trans-unit id="q7a-opt-3-feedback">
+        <source>גם לניסיון רב יש ערך, אך החלטה טובה צריכה להתבסס על נתונים ולא רק על דעתו האישית של אדם אחד.</source>
+      </trans-unit>
+
+      <!-- ===== Screen: q7b (Question 7b) ===== -->
+      <trans-unit id="q7b-heading">
+        <source>שאלה 7ב:</source>
+      </trans-unit>
+      <trans-unit id="q7b-text-1">
+        <source>כעת, לאחר שראש הכפר הבין מה גרם למשבר הדגים בלגונה, הוא שוקל כמה הצעות כפתרון לבעיה. הוא מבקש ממאיה ואלון, היועצים הצעירים, &lt;strong&gt;לסייע לו לבחור את הפתרון המתאים ביותר&lt;/strong&gt;. כדי לבחור נכון, עליהם להתחשב ב-2 תנאים בו-זמנית:</source>
+        <note>Contains a &lt;strong&gt; bold span mid-sentence.</note>
+      </trans-unit>
+      <trans-unit id="q7b-text-2">
+        <source>1. הפתרון צריך לתת מענה לרעב המיידי ולפרנסתם של הדייגים.&lt;br&gt;2. הפתרון צריך לשמור על אוכלוסיית הדגים ועל הלגונה לאורך זמן.</source>
+        <note>Two-item numbered list, separated by &lt;br&gt;.</note>
+      </trans-unit>
+      <trans-unit id="q7b-text-bold">
+        <source>בחרו בהצעה שנותנת את המענה הטוב ביותר לשני התנאים.</source>
+      </trans-unit>
+      <trans-unit id="q7b-img-alt">
+        <source>ראש הכפר מדבר, מאיה ואלון מביטים בו</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-0-text">
+        <source>לאפשר דיג חופשי ללא הגבלה כדי למנוע רעב.</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-0-feedback">
+        <source>פתרון זה עוזר לדייגים עכשיו, אבל מה יקרה לכמות הדגים בעתיד?</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-1-text">
+        <source>לאסור על דיג למשך חצי שנה, כדי לשקם את אוכלוסיית הדגים.</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-1-feedback">
+        <source>פתרון זה עוזר לדגים, אבל כיצד יקבלו הדייגים מזון ופרנסה בינתיים?</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-2-text">
+        <source>לדרוש מהדייגים להשתמש ברשתות המאפשרות לדגים קטנים לצאת מהרשת.</source>
+        <note>The correct option.</note>
+      </trans-unit>
+      <trans-unit id="q7b-opt-2-feedback">
+        <source>פתרון זה מאפשר לדייגים להמשיך לדוג, ובמקביל מאפשר לדגים הצעירים לגדול ולהתרבות ובכך מסייע לשמור על הלגונה.</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-3-text">
+        <source>להגביל את כמות הדגים שמותר לכל דייג לדוג, תוך שימוש ברשתות בעלות חורים קטנים.</source>
+      </trans-unit>
+      <trans-unit id="q7b-opt-3-feedback">
+        <source>ללא שינוי גודל הרשת, מה יקרה אם גם הדגים הקטנים ייתפסו?</source>
+      </trans-unit>
+
+      <!-- ===== Screen: q8a (Question 8) ===== -->
+      <trans-unit id="q8a-heading">
+        <source>שאלה 8:</source>
+      </trans-unit>
+      <trans-unit id="q8a-text">
+        <source>לפניכם מספר רעיונות שעלו בבית המועצה.</source>
+      </trans-unit>
+      <trans-unit id="q8a-text-bold">
+        <source>גררו את הרעיונות שאתם מסכימים איתם לספר החוקים.</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-1-img-alt">
+        <source>ילדים צוללים עם שלט איסור דיג</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-1-text">
+        <source>לאסור דיג באזורים מסוימים שבהם הדגים הצעירים נוטים להסתתר ולגדול.</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-2-img-alt">
+        <source>אב מציע לילדיו ירקות ופירות</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-2-text">
+        <source>לקיים מפגשים עם הדיינים והתושבים ולהסביר כיצד דיג יתר משפיע על עתיד הלגונה.</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-3-img-alt">
+        <source>ראש הכפר נפגש עם תושבים סביב שולחן</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-3-text">
+        <source>לעודד את תושבי הכפר לגוון את התזונה ולצרוך גם מזונות אחרים, כמו עופות, טופו וירקות.</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-4-img-alt">
+        <source>ילדים צוללים ליד דגים בים</source>
+      </trans-unit>
+      <trans-unit id="q8a-card-4-text">
+        <source>לאסור דיג בעונות רבייה, כדי לאפשר לדגים הבוגרים להתרבות ולהעמיד דור חדש של דגים.</source>
+      </trans-unit>
+      <trans-unit id="q8a-book-img-alt">
+        <source>ספר החוקים, פתוח בשני עמודים ריקים</source>
+      </trans-unit>
+      <trans-unit id="q8a-slot-1-aria">
+        <source>מקום ריק בספר החוקים 1</source>
+      </trans-unit>
+      <trans-unit id="q8a-slot-2-aria">
+        <source>מקום ריק בספר החוקים 2</source>
+      </trans-unit>
+      <trans-unit id="q8a-slot-3-aria">
+        <source>מקום ריק בספר החוקים 3</source>
+      </trans-unit>
+      <trans-unit id="q8a-slot-4-aria">
+        <source>מקום ריק בספר החוקים 4</source>
+      </trans-unit>
+      <trans-unit id="q8a-feedback-default">
+        <source>&lt;strong&gt;מצוין!&lt;/strong&gt;הוספתם את כל הרעיונות שהסכמתם איתם לספר החוקים של הלגונה.</source>
+        <note>Default feedback text pre-filled in the markup (q8a is an ungraded any-slot drag-and-drop, so this same message shows regardless of which cards were placed).</note>
+      </trans-unit>
+
+      <!-- ===== Screen: q8b ===== -->
+      <trans-unit id="q8b-bg-alt">
+        <source>ראש הכפר והתושבים מחזיקים את ספר החוקים הפתוח</source>
+      </trans-unit>
+      <trans-unit id="q8b-bubble-text">
+        <source>גם רעיון קטן יכול לעזור לשמור על הלגונה. לעיתים שילוב של כמה פתרונות קטנים יוצר שינוי גדול.</source>
+      </trans-unit>
+
+      <!-- ===== Screen: video-q8-end (closing video captions) ===== -->
+      <trans-unit id="video-ending-caption-01">
+        <source>תודה רבה לכם מאיה ואלון, על האכפתיות והעזרה.</source>
+      </trans-unit>
+      <trans-unit id="video-ending-caption-02">
+        <source>תודה על ההזדמנות ללמוד על הלגונה המיוחדת שלכם</source>
+      </trans-unit>
+      <trans-unit id="video-ending-caption-03">
+        <source>זו הייתה חוויה מלמדת ומעניינת.</source>
+      </trans-unit>
+
+      <!-- ===== Screen: before-ending ===== -->
+      <trans-unit id="before-ending-bg-alt">
+        <source>מאיה ואלון עם אגודל למעלה, מוקפים בבני הכפר</source>
+      </trans-unit>
+      <trans-unit id="before-ending-text-1">
+        <source>תלמידים יקרים, למדתם היום מיומנות חדשה –&lt;br&gt;&lt;strong&gt;קבלת החלטות ופתרון בעיות המבוססים על ידע מדעי.&lt;/strong&gt;</source>
+        <note>Contains a &lt;br&gt; and a bold &lt;strong&gt; span.</note>
+      </trans-unit>
+      <trans-unit id="before-ending-text-2">
+        <source>זכרו: לפעמים אין פתרון מושלם, אבל אפשר לקבל &lt;strong&gt;החלטה טובה יותר&lt;/strong&gt;&lt;br&gt;כאשר משתמשים במידע שנאסף, בראיות ובחשיבה מעמיקה.</source>
+        <note>Contains a bold &lt;strong&gt; span and a &lt;br&gt;.</note>
+      </trans-unit>
+      <trans-unit id="before-ending-text-3">
+        <source>בפעם הבאה שתתקלו בדילמה בבית הספר, בבית או בחיים –&lt;br&gt;זכרו את &lt;strong&gt;תיק המשימה של מארובו&lt;/strong&gt; ושאלו את עצמכם:</source>
+        <note>Contains a &lt;br&gt; and a bold &lt;strong&gt; span.</note>
+      </trans-unit>
+      <trans-unit id="before-ending-list-1">
+        <source>איזה מידע יש לי?</source>
+      </trans-unit>
+      <trans-unit id="before-ending-list-2">
+        <source>אילו עובדות ונתונים שנאספו יעזרו לי להבין את המצב?</source>
+      </trans-unit>
+      <trans-unit id="before-ending-list-3">
+        <source>אילו פתרונות אפשריים קיימים?</source>
+      </trans-unit>
+      <trans-unit id="before-ending-list-4">
+        <source>מה יהיו ההשלכות של כל פתרון?</source>
+      </trans-unit>
+      <trans-unit id="before-ending-list-5">
+        <source>איזו החלטה תעזור בצורה הטובה ביותר?</source>
+      </trans-unit>
+      <trans-unit id="before-ending-text-4">
+        <source>כך פועלים אנשים שמקבלים החלטות בצורה חכמה ואחראית.</source>
+      </trans-unit>
+
+      <!-- ===== Screen: ending ===== -->
+      <trans-unit id="ending-bg-alt">
+        <source>הלגונה השלווה עם דולפינים שוחים</source>
+      </trans-unit>
+      <trans-unit id="ending-close-aria">
+        <source>סגירת הקורס</source>
+        <note>aria-label on the ending screen's close ("X") button.</note>
+      </trans-unit>
+      <trans-unit id="ending-line1">
+        <source>כל הכבוד, המשימה הושלמה!</source>
+      </trans-unit>
+      <trans-unit id="ending-score-line">
+        <source>הציון שלך הוא</source>
+        <note>Followed by a dynamically-inserted score number/placeholder ("--" until computed).</note>
+      </trans-unit>
+      <trans-unit id="ending-line3">
+        <source>יש לסגור את המשימה בלחיצה על X</source>
+      </trans-unit>
+
+      <!-- ===== Shared image-zoom modal ===== -->
+      <trans-unit id="img-zoom-close-aria">
+        <source>סגור תמונה מוגדלת</source>
+        <note>aria-label on the close button of the shared image-zoom modal.</note>
+      </trans-unit>
+
+    </body>
+  </file>
+
+  <file source-language="he" target-language="en" datatype="plaintext" original="script.js">
+    <body>
+
+      <!-- ===== Q1a drag-and-drop item tray (ITEMS object) ===== -->
+      <trans-unit id="q1a-item-basalt">
+        <source>סלעי בזלת</source>
+        <note>Drag-and-drop item label (q1a sort tray), "depletable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-phosphate">
+        <source>מכרה פוספט</source>
+        <note>Drag-and-drop item label (q1a sort tray), "depletable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-sand">
+        <source>חול</source>
+        <note>Drag-and-drop item label (q1a sort tray), "depletable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-oil">
+        <source>נפט</source>
+        <note>Drag-and-drop item label (q1a sort tray), "depletable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-coal">
+        <source>פחם אבן</source>
+        <note>Drag-and-drop item label (q1a sort tray), "depletable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-fish">
+        <source>דגים</source>
+        <note>Drag-and-drop item label (q1a sort tray), "renewable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-mangrove">
+        <source>עצי מנגרובים</source>
+        <note>Drag-and-drop item label (q1a sort tray), "renewable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-ocean">
+        <source>מי אוקיינוס</source>
+        <note>Drag-and-drop item label (q1a sort tray), "renewable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-sun">
+        <source>אור השמש</source>
+        <note>Drag-and-drop item label (q1a sort tray), "renewable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-item-wind">
+        <source>רוחות החוף</source>
+        <note>Drag-and-drop item label (q1a sort tray), "renewable" resource.</note>
+      </trans-unit>
+      <trans-unit id="q1a-column-deplete">
+        <source>משאבים מתכלים</source>
+        <note>Column name used to build screen-reader aria-labels; duplicates the meaning of the HTML table header q1-table-header-deplete (plain spelling, no niqqud).</note>
+      </trans-unit>
+      <trans-unit id="q1a-column-renew">
+        <source>משאבים מתחדשים</source>
+        <note>Column name used to build screen-reader aria-labels; duplicates the meaning of the HTML table header q1-table-header-renew (plain spelling, no niqqud).</note>
+      </trans-unit>
+
+      <!-- ===== Shared screen-reader announcement fragments (q1a / q3 / q6 / q8a) ===== -->
+      <trans-unit id="js-aria-empty-cell-col">
+        <source>תא ריק, טור {column}, שורה {row}</source>
+        <note>Template for an empty drop-cell's aria-label, built as "תא ריק, טור " + column-name + ", שורה " + row-number (q1a sort table). {column} and {row} are placeholders for the inserted values.</note>
+      </trans-unit>
+      <trans-unit id="js-aria-empty-row-only">
+        <source>תא ריק, שורה {row}</source>
+        <note>Template for an empty drop-cell's aria-label with no column, built as "תא ריק, שורה " + row-number (used on q3 and q6).</note>
+      </trans-unit>
+      <trans-unit id="js-suffix-selected">
+        <source>— נבחר</source>
+        <note>Suffix appended to an item's aria-label once it is picked up, e.g. "[item name] — נבחר". Reused on q1a, q3, q6 and q8a.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-picked-table">
+        <source>נבחר. בחרו תא בטבלה כדי להניח אותו שם.</source>
+        <note>Screen-reader announcement suffix after picking an item, item name is prepended: "[item name] נבחר. בחרו תא בטבלה...". Shared by q1a, q3 and q6.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-picked-swap">
+        <source>נבחר. בחרו תא אחר או פריט אחר כדי להחליף.</source>
+        <note>Screen-reader announcement suffix when picking up an item that's already placed, item name is prepended. Shared by q1a, q3 and q6.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-selection-cancelled">
+        <source>הבחירה בוטלה.</source>
+        <note>Screen-reader announcement when a drag-and-drop selection is cancelled. Reused on q1a, q3, q6 and q8a.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-placed-prefix">
+        <source>הונח ב</source>
+        <note>Fragment meaning "[item] was placed in [location]", concatenated as itemName + " הונח ב" + locationLabel. Shared by q1a, q3 and q6.</note>
+      </trans-unit>
+      <trans-unit id="js-conjunction-and">
+        <source>ו</source>
+        <note>The Hebrew word "and", prefixed directly (no space, per Hebrew grammar) onto the second of two item names when announcing a swap, e.g. "[item A] ו[item B] הוחלפו במקומם." Shared by q1a, q3 and q6.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-swapped-suffix">
+        <source>הוחלפו במקומם.</source>
+        <note>Suffix completing the swap announcement described in js-conjunction-and's note.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-returned-to-tray">
+        <source>הוחזר לרשימת הפריטים.</source>
+        <note>Screen-reader announcement suffix when an item is returned to the tray, item name is prepended. Shared by q1a, q3 and q6.</note>
+      </trans-unit>
+      <trans-unit id="js-aria-correct-answer-shown">
+        <source>— התשובה הנכונה מוצגת</source>
+        <note>Aria-label suffix shown once attempts are exhausted and the correct answer is revealed. Shared by q1a and q3.</note>
+      </trans-unit>
+
+      <!-- ===== Q1a-specific feedback ===== -->
+      <trans-unit id="q1a-aria-correct-position">
+        <source>— במקום הנכון</source>
+        <note>Aria-label suffix on a correctly-placed item (q1a).</note>
+      </trans-unit>
+      <trans-unit id="q1a-aria-wrong-position">
+        <source>— במקום שגוי, השייך ל{column}</source>
+        <note>Aria-label suffix on a wrongly-placed item; {column} is the correct column name that gets appended (q1a).</note>
+      </trans-unit>
+      <trans-unit id="q1a-fb-correct">
+        <source>כל הכבוד! מיינתם את משאבי הטבע של הלגונה.</source>
+        <note>Feedback panel text shown on a fully-correct first attempt (q1a). In the markup "כל הכבוד!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q1a-announce-correct">
+        <source>כל הכבוד! כל הפריטים במקום הנכון.</source>
+        <note>Screen-reader announcement paired with q1a-fb-correct.</note>
+      </trans-unit>
+      <trans-unit id="q1a-fb-wrong-first">
+        <source>נסו שנית זכרו! משאב מתכלה נמצא בטבע בכמות מוגבלת ומשאב מתחדש נוצר באופן קבוע ובקצב מהיר.</source>
+        <note>Feedback panel text on the first wrong attempt (q1a). In the markup "נסו שנית" and "זכרו!" render bold.</note>
+      </trans-unit>
+      <trans-unit id="q1a-announce-partial-wrong">
+        <source>חלק מהפריטים עדיין לא במקום הנכון. נותר לכם עוד נסיון אחד.</source>
+        <note>Screen-reader announcement paired with q1a-fb-wrong-first.</note>
+      </trans-unit>
+      <trans-unit id="q1a-fb-final-wrong">
+        <source>לא נורא! כך המיון הנכון נראה. אלה משאבי הטבע של הלגונה.</source>
+        <note>Feedback panel text once attempts are exhausted (q1a). "לא נורא!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q1a-announce-attempts-done">
+        <source>נגמרו הנסיונות. התשובה הנכונה מוצגת כעת בטבלה.</source>
+        <note>Screen-reader announcement paired with q1a-fb-final-wrong.</note>
+      </trans-unit>
+
+      <!-- ===== Q1b feedback ===== -->
+      <trans-unit id="q1b-fb-final-wrong">
+        <source>לא נורא! כך משלימים את הקטע נכון.</source>
+        <note>Feedback panel text once attempts are exhausted (q1b). "לא נורא!" renders bold.</note>
+      </trans-unit>
+
+      <!-- ===== Q2a / Q5 shared feedback ===== -->
+      <trans-unit id="js-fb-fill-final-wrong">
+        <source>לא נורא! כך משלימים את המשפטים נכון.</source>
+        <note>Feedback panel text once attempts are exhausted; identical wording used on both q2a and q5. "לא נורא!" renders bold.</note>
+      </trans-unit>
+
+      <!-- ===== Generic feedback shared across q1b, q2a, q3, q4, q5 ===== -->
+      <trans-unit id="js-fb-correct-generic">
+        <source>תשובה נכונה! התקדמו לשאלה הבאה</source>
+        <note>Standard "correct answer" feedback panel text. "תשובה נכונה!" renders bold. Used on q1b, q2a, q3, q4, q5 (and as the default genericCorrectText/correctPrefix combo for q7a).</note>
+      </trans-unit>
+      <trans-unit id="js-fb-try-again">
+        <source>נסו שנית</source>
+        <note>Standard "try again" feedback panel text (bold), shown on the first wrong attempt. Used on q1b, q2a, q3, q4, q5, and as the default firstWrongText on q7a.</note>
+      </trans-unit>
+
+      <!-- ===== Q3-specific text ===== -->
+      <trans-unit id="q3-answer-ocean">
+        <source>פגיעה במקור המזון של חיות הים ובאיזון הטבעי של החיים בלגונה</source>
+        <note>Drag-and-drop answer label (q3 "damage" tray), matches the "הלגונה והדולפינים" row.</note>
+      </trans-unit>
+      <trans-unit id="q3-answer-family">
+        <source>דאגה יומיומית לאוכל עבור הילדים ולפרנסת הבית</source>
+        <note>Drag-and-drop answer label (q3 "damage" tray), matches the "הדייגים ומשפחותיהם" row.</note>
+      </trans-unit>
+      <trans-unit id="q3-answer-village">
+        <source>התמודדות עם מריבות בין התושבים ועם הקושי לנהל את הכפר</source>
+        <note>Drag-and-drop answer label (q3 "damage" tray), matches the "ראש הכפר והמועצה" row.</note>
+      </trans-unit>
+      <trans-unit id="q3-aria-correct-row">
+        <source>— בשורה הנכונה</source>
+        <note>Aria-label suffix on a correctly-placed answer (q3).</note>
+      </trans-unit>
+      <trans-unit id="q3-aria-wrong-row">
+        <source>— בשורה שגויה</source>
+        <note>Aria-label suffix on a wrongly-placed answer (q3).</note>
+      </trans-unit>
+      <trans-unit id="q3-announce-correct">
+        <source>כל הכבוד! כל הנזקים משוייכים לשורה הנכונה.</source>
+        <note>Screen-reader announcement on a fully-correct first attempt (q3).</note>
+      </trans-unit>
+      <trans-unit id="q3-announce-partial-wrong">
+        <source>חלק מהנזקים עדיין לא בשורה הנכונה. נותר לכם עוד נסיון אחד.</source>
+        <note>Screen-reader announcement on the first wrong attempt (q3).</note>
+      </trans-unit>
+      <trans-unit id="q3-fb-final-wrong">
+        <source>לא נורא! כך השיוך הנכון נראה.</source>
+        <note>Feedback panel text once attempts are exhausted (q3). "לא נורא!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q3-announce-attempts-done">
+        <source>נגמרו הנסיונות. השיוך הנכון מוצג כעת בטבלה.</source>
+        <note>Screen-reader announcement paired with q3-fb-final-wrong.</note>
+      </trans-unit>
+
+      <!-- ===== Q4-specific drag-and-drop statements ===== -->
+      <trans-unit id="q4-item-waves">
+        <source>הים כועס על התושבים בכפר ולכן הוא מעלים את הדגים</source>
+        <note>Drag-and-drop statement (q4), correct column: "opinions/feelings".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-neighbors">
+        <source>הדייגים מהאי השכן תמיד דגים את הדגים הכי טעימים ומשאירים לנו רק לכלוך</source>
+        <note>Drag-and-drop statement (q4), correct column: "opinions/feelings".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-scared">
+        <source>כנראה הדגים נבהלו מרעש המנועים ועברו לים הפתוח</source>
+        <note>Drag-and-drop statement (q4), correct column: "opinions/feelings".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-tradition">
+        <source>דיג ברשתות צפופות הוא הדרך הכי מהנה לדוג, ואין צורך לשנות אותה</source>
+        <note>Drag-and-drop statement (q4), correct column: "opinions/feelings".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-catch-half">
+        <source>השנה הצלחנו לדוג חצי מכמות הדגים שדגנו לפני שנתיים</source>
+        <note>Drag-and-drop statement (q4), correct column: "measurable facts".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-net-size">
+        <source>בדיקת הרשתות באמצעות סרגל מראה שגודל החורים ברשת הם 1.5 ס"מ</source>
+        <note>Drag-and-drop statement (q4), correct column: "measurable facts".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-boats">
+        <source>רישומי המועצה מראים שמספר סירות הדיג בכפר גדל מ-5 ל-25 סירות</source>
+        <note>Drag-and-drop statement (q4), correct column: "measurable facts".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-area">
+        <source>הדיג מתבצע בכל השטח שסביב לכפר, גם במקומות בהם דגים צעירים נוטים להסתתר</source>
+        <note>Drag-and-drop statement (q4), correct column: "measurable facts".</note>
+      </trans-unit>
+      <trans-unit id="q4-item-young-fish">
+        <source>דגים צעירים וקטנים שנתפסים ברשת, אינם מספיקים לגדול ולהתפתח ולהעמיד דור חדש של דגים</source>
+        <note>Drag-and-drop statement (q4), correct column: "measurable facts".</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q4-placed">
+        <source>הונח בעמודת</source>
+        <note>Fragment meaning "[statement] was placed in column [facts/feelings]", concatenated as statementText + " הונח בעמודת " + columnLabel + "." (q4).</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q4-returned">
+        <source>הוחזר לבחירה.</source>
+        <note>Screen-reader announcement suffix when a q4 statement is returned to selection, statement text is prepended.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q4-moved">
+        <source>הועבר לעמודת</source>
+        <note>Fragment meaning "[statement] was moved to column [facts/feelings]", concatenated as statementText + " הועבר לעמודת " + columnLabel + "." (q4).</note>
+      </trans-unit>
+      <trans-unit id="q4-announce-correct">
+        <source>כל הכבוד! כל ההיגדים משוייכים לעמודה הנכונה.</source>
+        <note>Screen-reader announcement on a fully-correct first attempt (q4).</note>
+      </trans-unit>
+      <trans-unit id="q4-announce-partial-wrong">
+        <source>חלק מההיגדים עדיין לא בעמודה הנכונה. נותר לכם עוד נסיון אחד.</source>
+        <note>Screen-reader announcement on the first wrong attempt (q4).</note>
+      </trans-unit>
+      <trans-unit id="q4-fb-final-wrong">
+        <source>לא נורא! כך המיון הנכון נראה.</source>
+        <note>Feedback panel text once attempts are exhausted (q4). "לא נורא!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q4-announce-attempts-done">
+        <source>נגמרו הנסיונות. המיון הנכון מוצג כעת.</source>
+        <note>Screen-reader announcement paired with q4-fb-final-wrong.</note>
+      </trans-unit>
+
+      <!-- ===== Q6-specific drag-and-drop sentences ===== -->
+      <trans-unit id="q6-item-growth">
+        <source>האוכלוסייה בכפר גדלה ויש דרישה ליותר מזון</source>
+        <note>Drag-and-drop sentence to order (q6), correct order position 1.</note>
+      </trans-unit>
+      <trans-unit id="q6-item-overfishing">
+        <source>הדייגים מגבירים את קצב הדיג ומשתמשים ברשתות צפופות יותר כדי לתפוס יותר דגים</source>
+        <note>Drag-and-drop sentence to order (q6), correct order position 2.</note>
+      </trans-unit>
+      <trans-unit id="q6-item-juveniles">
+        <source>דגים קטנים (צעירים) נלכדים לפני שהספיקו להתרבות ולהעמיד דור חדש</source>
+        <note>Drag-and-drop sentence to order (q6), correct order position 3.</note>
+      </trans-unit>
+      <trans-unit id="q6-item-decline">
+        <source>לאורך הזמן, כמות הדגים בלגונה צונחת בצורה חדה</source>
+        <note>Drag-and-drop sentence to order (q6), correct order position 4.</note>
+      </trans-unit>
+      <trans-unit id="q6-item-empty">
+        <source>הרשתות חוזרות ריקות, והכפר סובל מרעב ומפגיעה כלכלית</source>
+        <note>Drag-and-drop sentence to order (q6), correct order position 5.</note>
+      </trans-unit>
+      <trans-unit id="q6-aria-wrong-position">
+        <source>— לא במקום הנכון</source>
+        <note>Aria-label suffix on a wrongly-ordered sentence (q6).</note>
+      </trans-unit>
+      <trans-unit id="q6-fb-correct">
+        <source>תשובה נכונה! הצלחתם לסדר את המשפטים בסדר הנכון.</source>
+        <note>Feedback panel text on a fully-correct first attempt (q6). "תשובה נכונה!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q6-announce-correct">
+        <source>כל הכבוד! כל המשפטים בסדר הנכון.</source>
+        <note>Screen-reader announcement paired with q6-fb-correct.</note>
+      </trans-unit>
+      <trans-unit id="q6-fb-wrong-first">
+        <source>כמעט! בדקו את הפריטים המסומנים באדום ונסו שוב. נותר לכם עוד נסיון אחד.</source>
+        <note>Feedback panel text on the first wrong attempt (q6). "כמעט!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q6-announce-partial-wrong">
+        <source>חלק מהמשפטים עדיין לא במקום הנכון. נותר לכם עוד נסיון אחד.</source>
+        <note>Screen-reader announcement paired with q6-fb-wrong-first.</note>
+      </trans-unit>
+      <trans-unit id="q6-fb-final-wrong">
+        <source>לא נורא! כך הסדר הנכון נראה.</source>
+        <note>Feedback panel text once attempts are exhausted (q6). "לא נורא!" renders bold.</note>
+      </trans-unit>
+      <trans-unit id="q6-announce-attempts-done">
+        <source>נגמרו הנסיונות. הסדר הנכון מוצג כעת בטבלה.</source>
+        <note>Screen-reader announcement paired with q6-fb-final-wrong.</note>
+      </trans-unit>
+      <trans-unit id="q6-aria-correct-order-shown">
+        <source>— הסדר הנכון מוצג</source>
+        <note>Aria-label suffix once attempts are exhausted and the correct order is revealed (q6).</note>
+      </trans-unit>
+
+      <!-- ===== Single-choice engine defaults / per-screen config (q2b, q7a, q7b) ===== -->
+      <trans-unit id="js-sc-default-correct-prefix">
+        <source>מצוין!</source>
+        <note>Default bold prefix shown on a correct answer for single-choice questions (used by q2b, which doesn't override it).</note>
+      </trans-unit>
+      <trans-unit id="js-sc-default-reveal-prefix">
+        <source>לא נורא!</source>
+        <note>Bold prefix used when a single-choice question's genericRevealText is shown after attempts are exhausted.</note>
+      </trans-unit>
+      <trans-unit id="q7a-fb-try-again">
+        <source>נסו שנית</source>
+        <note>q7a's firstWrongText override (identical wording to js-fb-try-again, kept separate since it's a distinct config value in the code).</note>
+      </trans-unit>
+      <trans-unit id="q7a-fb-correct-prefix">
+        <source>תשובה נכונה!</source>
+        <note>q7a's correctPrefix override.</note>
+      </trans-unit>
+      <trans-unit id="q7a-fb-generic-correct">
+        <source>התקדמו לשאלה הבאה</source>
+        <note>q7a's genericCorrectText override, shown after the bold correctPrefix.</note>
+      </trans-unit>
+      <trans-unit id="q7a-fb-generic-reveal">
+        <source>כך פותרים את השאלה נכון.</source>
+        <note>q7a's genericRevealText, shown after "לא נורא!" once attempts are exhausted.</note>
+      </trans-unit>
+      <trans-unit id="q7b-fb-correct-prefix">
+        <source>תשובה נכונה!</source>
+        <note>q7b's correctPrefix override (identical wording to q7a's).</note>
+      </trans-unit>
+      <trans-unit id="q7b-fb-wrong-prefix">
+        <source>זו טעות.</source>
+        <note>q7b's wrongPrefix, shown bold before each distractor's own feedback text on the final wrong attempt.</note>
+      </trans-unit>
+      <trans-unit id="q7b-fb-wrong-suffix">
+        <source>נסו שנית.</source>
+        <note>q7b's wrongSuffix, appended after the distractor feedback on the final wrong attempt.</note>
+      </trans-unit>
+      <trans-unit id="q7b-fb-first-wrong">
+        <source>זאת טעות, נסו שוב.</source>
+        <note>q7b's firstWrongText, generic nudge shown (bold) on the first wrong attempt only.</note>
+      </trans-unit>
+
+      <!-- ===== Q8a-specific screen-reader announcements ===== -->
+      <trans-unit id="js-announce-q8a-picked">
+        <source>נבחר. בחרו מקום ריק בספר החוקים כדי להניח אותו שם.</source>
+        <note>Screen-reader announcement suffix after picking up a q8a idea card, card's alt text is prepended.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q8a-placed-and-displaced">
+        <source>הונח בספר החוקים, ו</source>
+        <note>Fragment: "[card] was placed in the rulebook, and [displaced card]..." — concatenated as placedLabel + " הונח בספר החוקים, ו" + displacedCardLabel + " הוחזר לרשימת הרעיונות." (q8a).</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q8a-placed-only">
+        <source>הונח בספר החוקים.</source>
+        <note>Screen-reader announcement suffix when a q8a card is placed with no card displaced, card's alt text is prepended.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q8a-returned">
+        <source>הוחזר לרשימת הרעיונות.</source>
+        <note>Screen-reader announcement suffix when a q8a card is returned to the source tray, card's alt text is prepended.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q8a-moved">
+        <source>הועבר למקום אחר בספר החוקים.</source>
+        <note>Screen-reader announcement suffix when a placed q8a card is moved to another slot, card's alt text is prepended.</note>
+      </trans-unit>
+      <trans-unit id="js-announce-q8a-picked-placed">
+        <source>נבחר. בחרו מקום אחר בספר כדי להעביר אליו, או לחצו כאן שוב כדי להחזיר אותו לרשימה.</source>
+        <note>Screen-reader announcement suffix after picking up an already-placed q8a card, card's alt text is prepended.</note>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

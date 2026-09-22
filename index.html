@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תיק החירום - מסך פתיחה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css">
+</head>
+<body>
+<div class="dev-bar" id="dev-bar">
+  <b>בדיקת גשר QA:</b>
+  <span>מסכים שהתגלו:</span> <span id="dev-total">—</span>
+  <button type="button" id="dev-prev">◀ הקודם</button>
+  <input id="dev-scr" type="number" min="1" value="1">
+  <button type="button" id="dev-next">הבא ▶</button>
+</div>
+<div id="app">
+  <main class="screen" id="screen-opening" data-screen="1">
+    <img class="bg" src="assets/ending background.png" alt="" aria-hidden="true">
+
+    <div class="opening-logo-badge">
+      <img class="opening-logo" src="assets/לוגו כחול כהה.png" alt="משרד החינוך, מינהל חדשנות וטכנולוגיה">
+    </div>
+
+    <div class="intro-stage">
+      <div class="card card--opening" data-reveal="1">
+        <p class="card-line card-line--opening-title">ברוכים הבאים לפעילות – התעלומה בלגונה של מארובו!</p>
+        <p class="card-line card-line--opening-body">
+          ברגע שתלחצו על כפתור ההתחלה, תגיעו ללגונת מארובו שבאוקיינוס השקט, שם תמתין
+          לכם תעלומה סביבתית הקשורה למשאבי טבע. תושבי הכפר זקוקים לעזרתכם! במהלך
+          הפעילות תכירו את סיפורו של הכפר, תתרגלו מיומנות חשובה הקשורה בקבלת החלטות,
+          ותקבלו החלטות שישפיעו על עתיד הלגונה ותושביה.
+        </p>
+        <p class="card-line card-line--opening-cta">צאו לדרך, הלגונה מחכה!</p>
+
+        <button type="button" class="btn-continue" id="btn-continue-opening">
+          <span>התחילו</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <main class="screen" id="screen-video-intro" data-screen="2" hidden>
+    <!-- Video zone: video + play button + captions reveal together as ONE
+         fade-only group (motion-system role: "Video zone"). -->
+    <div class="videoscreen" data-reveal="1" data-reveal-fade>
+      <video class="video-el" src="videos/LAGUNA_PART1_V4.mp4" playsinline preload="auto" disablepictureinpicture
+             controlsList="nodownload noremoteplayback nofullscreen noplaybackrate"></video>
+      <button type="button" class="video-play" aria-label="נגן את הסרטון">▶</button>
+      <div class="video-cap" data-vcap aria-live="polite"></div>
+      <div class="vctrls hidden" dir="ltr">
+        <button class="vc-btn" type="button" data-play aria-label="נגן או השהה">▶</button>
+        <span class="vc-time" data-cur>0:00</span>
+        <input class="vc-seek" type="range" min="0" max="1000" value="0" step="1" data-seek aria-label="סרגל התקדמות">
+        <span class="vc-time" data-dur>0:00</span>
+        <button class="vc-btn vc-cc" type="button" data-cc aria-pressed="true" aria-label="הצגת כתוביות">CC</button>
+        <button class="vc-btn" type="button" data-mute aria-label="השתקה">🔊</button>
+        <input class="vc-vol" type="range" min="0" max="100" value="100" step="1" data-vol aria-label="עוצמת שמע">
+        <button class="vc-btn" type="button" data-full aria-label="מסך מלא">⛶</button>
+      </div>
+    </div>
+    <!-- captions as live text (translation-safe); times in seconds -->
+    <div class="vcap-src" data-end="116.799" hidden>
+      <span data-t="0"></span>
+      <span data-t="0.533">מאיה ואלון שמחו להצטרף מידי פעם למסעות עם הוריהם חוקרי הטבע</span>
+      <span data-t="6.233">הפעם היעד שלהם מיוחד ויפה מתמיד:</span>
+      <span data-t="10.1">לגונת מארובו שבאוקיינוס השקט, מקום שנראה כמו גן-עדן מושלם.</span>
+      <span data-t="16.533"></span>
+      <span data-t="17.166">מידי בוקר, המשפחה יוצאת לטייל על החוף</span>
+      <span data-t="20.466">אבל הבוקר משהו לא היה כשורה...</span>
+      <span data-t="24.1"></span>
+      <span data-t="24.7">סירות הדייגים חזרו מהים כמעט ריקות.</span>
+      <span data-t="28.966"></span>
+      <span data-t="30.566">פתאום נשמעו קולות רמים מכיוון בית המועצה של הכפר.</span>
+      <span data-t="34.766">ויכוח סוער היה בעיצומו.</span>
+      <span data-t="37.433">אנחנו חייבים לדוג יותר, המשפחות שלנו רעבות</span>
+      <span data-t="40.633">אנחנו חייבים לדוג פחות</span>
+      <span data-t="42.866">אחרת בעוד כמה שנים לא ישארו דגים לאכול</span>
+      <span data-t="46.5"></span>
+      <span data-t="48.8">לעודד יותר דיג או להפחית אותו?</span>
+      <span data-t="52.4">אם נדוג פחות דגים, אנו עלולים לרעוב.</span>
+      <span data-t="56.466"></span>
+      <span data-t="57.4">מצד שני אם נדוג יותר מדי נפגע באוכלוסיית הדגים.</span>
+      <span data-t="62.466"></span>
+      <span data-t="62.9">הדייגים, התושבים וטובת הלגונה חשובים לי. מה תהיה הבחירה הנכונה?</span>
+      <span data-t="70.066"></span>
+      <span data-t="71.066">מאיה ואלון מחליפים מבטים.</span>
+      <span data-t="73.7">הם נזכרים במה שלמדו בבית הספר.</span>
+      <span data-t="76.8">אנחנו לא מכירים את הלגונה, אבל אנחנו יודעים איך לאסוף מידע</span>
+      <span data-t="81.233">לבחון עובדות, תוצאות שנאספו ולהשוות בין פתרונות.</span>
+      <span data-t="85.6">נשמח להשתתף במציאת הפתרון.</span>
+      <span data-t="88.233"></span>
+      <span data-t="89.333">ראש הכפר שכבר מכיר היטב את ההורים חוקרי הטבע,</span>
+      <span data-t="93.8">שמח על הכוונה הטובה של הילדים ומחליט לתת להם תפקיד מיוחד.</span>
+      <span data-t="99.533">מאיה ואלון, אני ממנה אתכם ליועצים הצעירים של המועצה.</span>
+      <span data-t="105.5">בדקו את העובדות והמליצו לנו מה לעשות.</span>
+      <span data-t="109.4"></span>
+      <span data-t="110.733"></span>
+    </div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-video-intro" aria-label="המשך" disabled>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-video-intro" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q1" data-screen="3" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <button type="button" class="btn-help" id="btn-help-open" aria-haspopup="dialog">
+      <span>עזרה</span>
+    </button>
+
+    <div class="stage-card">
+      <!-- Container-scope note: .q-content encloses the screen's drag-and-drop
+           sort table -- a measured/interactive component (Rule precedence #1)
+           that must never be float-animated. Leaf-marking the heading/intro
+           text only, per the documented mixed-container exception; the
+           interactive .q-body is left unanimated. -->
+      <div class="q-content">
+        <h2 id="q1-heading" tabindex="-1" data-reveal="1">שאלה 1א:</h2>
+        <p class="q-text" data-reveal="1">
+          עזרו למאיה ואלון, ומיינו את משאבי הטבע של הלגונה לתיבות הנכונות:
+        </p>
+        <p class="q-text q-text--bold" data-reveal="1">גררו כל משאב לתיבה המתאימה:</p>
+
+        <div class="q-body">
+          <table class="sort-table" id="sort-table" aria-describedby="q1-heading">
+            <thead>
+              <tr>
+                <th scope="col">משאבים מִתְכַּלִּים</th>
+                <th scope="col">משאבים מִתְחַדְּשִׁים</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><button type="button" class="cell" id="cell-deplete-0" data-col="deplete" data-row="0"></button></td>
+                <td><button type="button" class="cell" id="cell-renew-0" data-col="renew" data-row="0"></button></td>
+              </tr>
+              <tr>
+                <td><button type="button" class="cell" id="cell-deplete-1" data-col="deplete" data-row="1"></button></td>
+                <td><button type="button" class="cell" id="cell-renew-1" data-col="renew" data-row="1"></button></td>
+              </tr>
+              <tr>
+                <td><button type="button" class="cell" id="cell-deplete-2" data-col="deplete" data-row="2"></button></td>
+                <td><button type="button" class="cell" id="cell-renew-2" data-col="renew" data-row="2"></button></td>
+              </tr>
+              <tr>
+                <td><button type="button" class="cell" id="cell-deplete-3" data-col="deplete" data-row="3"></button></td>
+                <td><button type="button" class="cell" id="cell-renew-3" data-col="renew" data-row="3"></button></td>
+              </tr>
+              <tr>
+                <td><button type="button" class="cell" id="cell-deplete-4" data-col="deplete" data-row="4"></button></td>
+                <td><button type="button" class="cell" id="cell-renew-4" data-col="renew" data-row="4"></button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul class="item-tray" id="item-tray" aria-label="פריטים למיון"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel m-popup" id="feedback-panel" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text"></div>
+    </div>
+
+    <div class="sr-only" role="status" aria-live="polite" id="sort-status"></div>
+
+    <button type="button" class="btn-check btn-check--q1a" id="btn-check" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q1" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q1" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <div class="dialog-overlay m-popup" id="help-overlay" hidden>
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="help-title" id="help-dialog">
+        <h2 id="help-title" class="sr-only">עזרה</h2>
+        <p id="help-desc">
+          משאב מתכלה נמצא בטבע בכמות מוגבלת, והיווצרותו מחדש לוקחת מליוני שנים.
+          משאב מתחדש נוצר בטבע באופן קבוע ובקצב מהיר.
+        </p>
+        <button type="button" class="btn-help-close" id="btn-help-close" aria-label="סגור חלון עזרה"></button>
+      </div>
+    </div>
+  </main>
+
+  <main class="screen" id="screen-q1b" data-screen="4" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <button type="button" class="btn-help" id="btn-help-open-q1b" aria-haspopup="dialog">
+      <span>עזרה</span>
+    </button>
+
+    <div class="stage-card">
+      <div class="q-content" data-reveal="1">
+        <h2 id="q1b-heading" tabindex="-1">שאלה 1ב:</h2>
+        <p class="q-text">
+          לאחר מיון סוגי המשאבים, הביט אלון מופתע במאיה וטען: "אם דגים הם משאב מתחדש,
+          אז אין סיכוי שהם ייעלמו".
+        </p>
+        <p class="q-text q-text--bold">
+          עזרו למאיה להסביר לאלון באילו תנאים הטענה שלו נכונה.
+        </p>
+        <p class="q-text q-text--bold q-text--lead">השלימו את הקטע שלפניכם:</p>
+
+        <div class="q-fill">
+          <p>
+            דגים נחשבים למשאב טבע
+            <span class="fill-select-wrap">
+              <select class="fill-select" data-answer="מתחדש" aria-label="השלמה 1">
+                <option value="" selected disabled>בחרו</option>
+                <option value="מתחדש">מתחדש</option>
+                <option value="מתכלה">מתכלה</option>
+              </select>
+              <span class="fill-badge" aria-hidden="true"></span>
+            </span>.
+          </p>
+          <p>
+            יחד עם זאת, אם קצב הדיג של האדם יהיה גבוה
+            ביחס לקצב ההתרבות
+          </p>
+          <p>
+            הטבעי של הדגים, מספר הדגים
+            <span class="fill-select-wrap">
+              <select class="fill-select" data-answer="יקטן" aria-label="השלמה 3">
+                <option value="" selected disabled>בחרו</option>
+                <option value="יקטן">יקטן</option>
+                <option value="יגדל">יגדל</option>
+              </select>
+              <span class="fill-badge" aria-hidden="true"></span>
+            </span>
+          </p>
+          <p>
+            והם עלולים
+            <span class="fill-select-wrap">
+              <select class="fill-select" data-answer="להיעלם" aria-label="השלמה 4">
+                <option value="" selected disabled>בחרו</option>
+                <option value="להיעלם">להיעלם</option>
+                <option value="להתרבות">להתרבות</option>
+              </select>
+              <span class="fill-badge" aria-hidden="true"></span>
+            </span>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Override: avatar+quote-bubble is a foreground accent overlaid on the
+         main card's corner (z-index above it), not a side-by-side zone, so
+         it reveals AFTER the main content instead of by left/right order. -->
+    <img class="q1b-avatar" src="assets/kids.png" alt="מאיה ואלון" data-reveal="2">
+
+    <div class="q1b-bubble" id="q1b-bubble" data-reveal="2">
+      <div class="q1b-bubble-text" id="q1b-bubble-quote">
+        אם דגים הם משאב מתחדש, אז אין סיכוי שהם ייעלמו
+      </div>
+    </div>
+
+    <div class="feedback-panel feedback-panel--q1b m-popup" id="feedback-panel-q1b" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q1b"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q1b" id="btn-check-q1b" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q1b" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q1b" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <div class="dialog-overlay m-popup" id="help-overlay-q1b" hidden>
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="help-title-q1b" id="help-dialog-q1b">
+        <h2 id="help-title-q1b" class="sr-only">עזרה</h2>
+        <p id="help-desc-q1b">
+          כדי שמשאב מתחדש לא ייגמר, חייבים לתת לטבע מספיק זמן לייצר אותו מחדש. אם קצב הצריכה
+          של בני האדם גבוה מקצב ההתחדשות הטבעי, כמות המשאב תלך ותקטן.
+        </p>
+        <button type="button" class="btn-help-close" id="btn-help-close-q1b" aria-label="סגור חלון עזרה"></button>
+      </div>
+    </div>
+  </main>
+
+  <main class="screen" id="screen-video-q1q2" data-screen="5" hidden>
+    <div class="videoscreen" data-reveal="1" data-reveal-fade>
+      <video class="video-el" src="videos/LAGUNA_PART2_V4.mp4" playsinline preload="auto" disablepictureinpicture
+             controlsList="nodownload noremoteplayback nofullscreen noplaybackrate"></video>
+      <button type="button" class="video-play" aria-label="נגן את הסרטון">▶</button>
+      <div class="video-cap" data-vcap aria-live="polite"></div>
+      <div class="vctrls hidden" dir="ltr">
+        <button class="vc-btn" type="button" data-play aria-label="נגן או השהה">▶</button>
+        <span class="vc-time" data-cur>0:00</span>
+        <input class="vc-seek" type="range" min="0" max="1000" value="0" step="1" data-seek aria-label="סרגל התקדמות">
+        <span class="vc-time" data-dur>0:00</span>
+        <button class="vc-btn vc-cc" type="button" data-cc aria-pressed="true" aria-label="הצגת כתוביות">CC</button>
+        <button class="vc-btn" type="button" data-mute aria-label="השתקה">🔊</button>
+        <input class="vc-vol" type="range" min="0" max="100" value="100" step="1" data-vol aria-label="עוצמת שמע">
+        <button class="vc-btn" type="button" data-full aria-label="מסך מלא">⛶</button>
+      </div>
+    </div>
+    <div class="vcap-src" data-end="0" hidden></div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-video-q1q2" aria-label="המשך" disabled>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-video-q1q2" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q2a" data-screen="6" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <div class="stage-card">
+      <div class="q-content" data-reveal="1">
+        <h2 id="q2a-heading" tabindex="-1">שאלה 2א:</h2>
+        <p class="q-text">
+          בתיק החירום, מצאו מאיה ואלון דפים המתעדים מחקרים וגרפים שונים.<br>
+          באחד הדפים הם ראו את הגרף המוצג.
+        </p>
+        <p class="q-text q-text--bold q-text--lead">התבוננו בגרף והשלימו את המילים החסרות:</p>
+
+        <div class="q-body q2a-body">
+          <div class="q2a-chart-wrap">
+            <div class="q2a-chart-caption">משקל הדגה הכולל הנמדד בלגונה לאורך שנים</div>
+            <div class="q2a-chart-title">משקל הדגה הכולל בלגונה (בטון)</div>
+            <div class="q2a-chart-body">
+              <div class="q2a-chart-main">
+                <div class="q2a-yaxis">
+                  <div class="q2a-yaxis-track">
+                    <span style="top:8.37%">500</span>
+                    <span style="top:16.66%">450</span>
+                    <span style="top:24.96%">400</span>
+                    <span style="top:33.26%">350</span>
+                    <span style="top:41.55%">300</span>
+                    <span style="top:49.84%">250</span>
+                    <span style="top:58.14%">200</span>
+                    <span style="top:66.43%">150</span>
+                    <span style="top:74.73%">100</span>
+                    <span style="top:83.03%">50</span>
+                    <span style="top:91.32%">0</span>
+                  </div>
+                </div>
+                <img class="q2a-chart-img" src="assets/Group 22 new.png" alt="">
+              </div>
+              <div class="q2a-xaxis">
+                <span>2010</span><span>2014</span><span>2018</span><span>2022</span><span>2026</span>
+              </div>
+              <div class="q2a-xaxis-label">שנים</div>
+            </div>
+          </div>
+
+          <div class="q-fill q2a-fill">
+            <p>
+              בשנת 2010 נמדדו
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="500" aria-label="השלמה 1">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="50">50</option>
+                  <option value="150">150</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              טונות של דגים בלגונה.
+            </p>
+            <p>
+              בשנת 2018 נמדדו
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="300" aria-label="השלמה 2">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="50">50</option>
+                  <option value="150">150</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              טונות של דגים בלגונה.
+            </p>
+            <p>
+              בשנת 2026 נמדדו
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="50" aria-label="השלמה 3">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="50">50</option>
+                  <option value="150">150</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              טונות של דגים בלגונה.
+            </p>
+            <p>
+              מהתוצאות האלו ניתן להסיק כי במהלך השנים חלה
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="ירידה" aria-label="השלמה 4">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="ירידה">ירידה</option>
+                  <option value="עלייה">עלייה</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              בכמות הדגים בלגונה.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel feedback-panel--q2a m-popup" id="feedback-panel-q2a" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q2a"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q2a" id="btn-check-q2a" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q2a" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q2a" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q2b" data-screen="7" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <div class="stage-card">
+      <div class="q-content" data-reveal="1">
+        <h2 id="q2b-heading" tabindex="-1">שאלה 2ב:</h2>
+        <p class="q-text">
+          חוקרי טבע חשוב לדעת מהי כמות הדגים (בטונות) בלגונה כולה, אך הם אינם יכולים
+          לתפוס ולשקול אחד-אחד את כל הדגים שבלגונה.<br>
+          מה עושים החוקרים כדי לקבל הערכה מדעית מדויקת?
+        </p>
+        <p class="q-text q-text--bold">סמנו את התשובה הנכונה.</p>
+
+        <div class="q-body q2b-body">
+          <img class="q2b-img" src="assets/q2b picture.png" alt="דייג ובנו בוחנים ארגז דגים על החוף">
+
+          <ul class="q2b-options" role="radiogroup" aria-labelledby="q2b-heading" id="q2b-options">
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="0"
+                data-feedback="חשבו, האם מספר הדגים שנתפסו על ידי הדייגים שווה לכל מניין הדגים בלגונה?">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">סופרים את כל הדגים שכל הדייגים דגו באותו היום.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="1"
+                data-feedback="חשבו, האם מספר הדגים באזור אחד שווה למספרם גם באזורים אחרים בלגונה?">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">
+                  סופרים את הדגים רק באזור אחד ליד החוף, ומכפילים את המספר שיצא בגודל הלגונה.
+                </span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="2"
+                data-feedback="חשבו, האם כל הלגונות זהות בגודל, בתנאים ובכמות היצורים החיים שבהן?">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">
+                  משתמשים בנוסחה קבועה שקובעת שבכל לגונה בעולם יש תמיד אותה כמות של דגים.
+                </span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="3" data-correct="true"
+                data-feedback="דגימה של אזורים שונים נותנת תמונה מייצגת יותר של הלגונה כולה ומאפשרת להעריך את כמות הדגים בלגונה בצורה מדעית.">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">
+                  מודדים את כמות הדגים בכמה אזורים שונים בלגונה, מחשבים את הממוצע ומכפילים אותו בגודל&nbsp;הלגונה.
+                </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel feedback-panel--q2b m-popup" id="feedback-panel-q2b" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q2b"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q2b" id="btn-check-q2b" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q2b" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q2b" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q3" data-screen="8" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <!-- Container-scope note: .q-content encloses the drag-and-drop damage
+         table -- leaf-marking the heading/intro text only (Rule precedence
+         #1/#6); the interactive .q-body is left unanimated. -->
+    <div class="stage-card">
+      <div class="q-content">
+        <h2 id="q3-heading" tabindex="-1" data-reveal="1">שאלה 3:</h2>
+        <p class="q-text" data-reveal="1">
+          בלגונה מתקיימים קשרים של תלות הדדית בין מספר גורמים: אם אוכלוסיית הדגים תיפגע –
+          יפגעו גם היצורים החיים בלגונה ובני האדם החיים בכפר.
+        </p>
+        <p class="q-text q-text--bold" data-reveal="1">
+          גררו את הנזק שיגרם לשורה המתאימה, בעקבות ירידה במספר הדגים בלגונה.
+        </p>
+
+        <div class="q-body">
+          <table class="q3-table" id="q3-table" aria-describedby="q3-heading">
+            <thead>
+              <tr>
+                <th scope="col">גורמים המושפעים מהנזק</th>
+                <th scope="col">הנזק שיגרם</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="q3-fact-cell">
+                  <div class="q3-fact">
+                    <span class="q3-fact-text">הלגונה<br>והדולפינים</span>
+                    <span class="q3-fact-photo-slot"><img class="q3-fact-photo" src="assets/q3 1.png" alt=""></span>
+                  </div>
+                </td>
+                <td class="q3-answer-cell"><button type="button" class="q3-answer" id="q3-cell-0" data-row="0"></button></td>
+              </tr>
+              <tr>
+                <td class="q3-fact-cell">
+                  <div class="q3-fact">
+                    <span class="q3-fact-text">הדייגים<br>ומשפחותיהם</span>
+                    <span class="q3-fact-photo-slot"><img class="q3-fact-photo" src="assets/q3 2.png" alt=""></span>
+                  </div>
+                </td>
+                <td class="q3-answer-cell"><button type="button" class="q3-answer" id="q3-cell-1" data-row="1"></button></td>
+              </tr>
+              <tr>
+                <td class="q3-fact-cell">
+                  <div class="q3-fact">
+                    <span class="q3-fact-text">ראש הכפר<br>והמועצה</span>
+                    <span class="q3-fact-photo-slot"><img class="q3-fact-photo" src="assets/q3 3.png" alt=""></span>
+                  </div>
+                </td>
+                <td class="q3-answer-cell"><button type="button" class="q3-answer" id="q3-cell-2" data-row="2"></button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul class="item-tray q3-tray" id="q3-tray" aria-label="פריטים למיון"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-only" role="status" aria-live="polite" id="sort-status-q3"></div>
+
+    <div class="feedback-panel m-popup" id="feedback-panel-q3" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q3"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q3" id="btn-check-q3" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q3" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q3" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q4" data-screen="9" hidden>
+    <img class="bg" src="assets/q4 background.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <!-- Container-scope note: heading/intro text leaf-marked only -- the
+         drag-and-drop columns below (and the floating .q4-current item,
+         which sits outside .stage-card entirely) are never float-animated. -->
+    <div class="stage-card">
+      <div class="q-content">
+        <h2 id="q4-heading" tabindex="-1" data-reveal="1">שאלה 4:</h2>
+        <p class="q-text" data-reveal="1">
+          במועצת הכפר נשמעו קולות רבים. כדי לקבל החלטה חכמה, מאיה ואלון, שראש הכפר מינה
+          אותם ליועצים צעירים, צריכים להסתמך רק על עובדות שאפשר למדוד (עובדות מדידות)
+          ולא על דעות או הרגשה אישית.
+        </p>
+        <p class="q-text q-text--bold" data-reveal="1">
+          בתחתית הטבלה תמצאו מספר היגדים, גיררו את ההיגדים לעובדות מדידות ולדעות או הרגשות.
+        </p>
+
+        <div class="q4-table" id="q4-table" aria-describedby="q4-heading">
+          <div class="q4-col" data-col="facts">
+            <div class="q4-col-head">עובדות מדידות</div>
+            <ul class="q4-col-list" id="q4-col-facts"></ul>
+          </div>
+          <div class="q4-col" data-col="feelings">
+            <div class="q4-col-head">דעות או הרגשות</div>
+            <ul class="q4-col-list" id="q4-col-feelings"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Moved by script.js into whichever column has fewer placed answers
+         (more empty room) at the moment it's shown. -->
+    <div class="feedback-panel feedback-panel--q4 m-popup" id="feedback-panel-q4" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q4"></div>
+    </div>
+
+    <div class="sr-only" role="status" aria-live="polite" id="sort-status-q4"></div>
+
+    <div class="q4-current" id="q4-current">
+      <button type="button" class="q4-blob" id="q4-current-item" draggable="true"></button>
+    </div>
+
+    <button type="button" class="btn-check" id="btn-check-q4" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q4" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q4" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <!-- ===== Video placeholder 1 =====
+       To set the clip: change the <video class="video-el"> src below.
+       Optional captions: fill in .vcap-src span[data-t] lines (seconds) and
+       the data-end attribute (when the last caption should clear). -->
+  <main class="screen" id="screen-video1" data-screen="10" hidden>
+    <div class="videoscreen" data-reveal="1" data-reveal-fade>
+      <video class="video-el" src="videos/LAGUNA_PART3_V4.mp4" playsinline preload="auto" disablepictureinpicture
+             controlsList="nodownload noremoteplayback nofullscreen noplaybackrate"></video>
+      <button type="button" class="video-play" aria-label="נגן את הסרטון">▶</button>
+      <div class="video-cap" data-vcap aria-live="polite"></div>
+      <div class="vctrls hidden" dir="ltr">
+        <button class="vc-btn" type="button" data-play aria-label="נגן או השהה">▶</button>
+        <span class="vc-time" data-cur>0:00</span>
+        <input class="vc-seek" type="range" min="0" max="1000" value="0" step="1" data-seek aria-label="סרגל התקדמות">
+        <span class="vc-time" data-dur>0:00</span>
+        <button class="vc-btn vc-cc" type="button" data-cc aria-pressed="true" aria-label="הצגת כתוביות">CC</button>
+        <button class="vc-btn" type="button" data-mute aria-label="השתקה">🔊</button>
+        <input class="vc-vol" type="range" min="0" max="100" value="100" step="1" data-vol aria-label="עוצמת שמע">
+        <button class="vc-btn" type="button" data-full aria-label="מסך מלא">⛶</button>
+      </div>
+    </div>
+    <!-- captions as live text (translation-safe); times in seconds -->
+    <div class="vcap-src" data-end="48.899" hidden>
+      <span data-t="0"></span>
+      <span data-t="0.1">לאחר שריכזו את העובדות שעומדות לרשותם בחקירה,</span>
+      <span data-t="4.066">מאיה ואלון יצאו לסיור עם ראש הכפר.</span>
+      <span data-t="8.266">כדי לשמור על הגודל של אוכלוסיית הדגים בלגונה</span>
+      <span data-t="12.433">חשוב לאפשר לדגים הצעירים לגדול.</span>
+      <span data-t="15.533">הדגים הבוגרים הם אלו שמתרבים</span>
+      <span data-t="18.166">ומביאים צאצאים חדשים, ובכך מאפשרים את המשך קיום הדגים בלגונה</span>
+      <span data-t="24.066"></span>
+      <span data-t="24.6">עכשיו אני מבין, דיג של דגים צעירים בלגונה</span>
+      <span data-t="28.5">מונע מהם להתרבות ולהעמיד צאצאים</span>
+      <span data-t="32.266">בדיוק כך, ושימו לב שכל הדגים גדלים עם הזמן</span>
+      <span data-t="36.8">לכן דגים צעירים קטנים יותר בממדיהם מהדגים הבוגרים</span>
+      <span data-t="41.833"></span>
+      <span data-t="44.666"></span>
+    </div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-video1" aria-label="המשך" disabled>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-video1" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q5" data-screen="11" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <div class="stage-card">
+      <div class="q-content" data-reveal="1">
+        <h2 id="q5-heading" tabindex="-1">שאלה 5:</h2>
+        <p class="q-text">
+          מאיה ואלון הוציאו מתוך התיק שתי רשתות דיג ופרסו אותן. אלון הבחין כי אומנם הרשתות
+          זהות בגודלן ובחומר ממנו הן עשויות, אך ישנו הבדל אחד בולט ביניהן. התבוננו בתמונות כדי
+          להבין כיצד השוני בגודל החורים ברשתות משפיע על גודל הדגים הנתפסים.
+        </p>
+        <p class="q-text q-text--bold q-text--lead">השלימו את המילים החסרות:</p>
+
+        <div class="q-body q5-body">
+          <div class="q-fill q5-fill">
+            <p>
+              ככל שהחורים ברשת
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="גדולים" aria-label="השלמה 1">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="גדולים">גדולים</option>
+                  <option value="קטנים">קטנים</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              יותר, כך הדגים
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="הקטנים" aria-label="השלמה 2">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="הגדולים">הגדולים</option>
+                  <option value="הקטנים">הקטנים</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+            </p>
+            <p>
+              מצליחים לצאת דרך החורים, והדגים
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="הגדולים" aria-label="השלמה 3">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="הגדולים">הגדולים</option>
+                  <option value="הקטנים">הקטנים</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              נתפסים ברשת.
+            </p>
+            <p>
+              ולכן ככל שהחורים ברשת
+              <span class="fill-select-wrap">
+                <select class="fill-select" data-answer="קטנים" aria-label="השלמה 4">
+                  <option value="" selected disabled>בחרו</option>
+                  <option value="גדולים">גדולים</option>
+                  <option value="קטנים">קטנים</option>
+                </select>
+                <span class="fill-badge" aria-hidden="true"></span>
+              </span>
+              יותר, כך יותר דגים – גדולים וקטנים – נתפסים&nbsp;ברשת.
+            </p>
+          </div>
+
+          <div class="q5-gallery">
+            <div class="q5-images">
+              <button type="button" class="q5-img-btn" data-zoom-src="assets/q5 image top.png"
+                data-zoom-alt="רשת דיג עם חורים גדולים, ריקה" aria-label="הגדלת תמונה: רשת עם חורים גדולים">
+                <img src="assets/q5 image top.png" alt="">
+              </button>
+              <button type="button" class="q5-img-btn" data-zoom-src="assets/q5 Image bottom.png"
+                data-zoom-alt="רשת דיג עם חורים קטנים, עם דגים שנתפסו בה" aria-label="הגדלת תמונה: רשת עם חורים קטנים">
+                <img src="assets/q5 Image bottom.png" alt="">
+              </button>
+            </div>
+            <div class="q5-hint" aria-hidden="true">
+              <img class="q5-hint-icon" src="assets/q5 bigger icon.png" alt="">
+              <span>לחצו על התמונות להגדלה</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel feedback-panel--q5 m-popup" id="feedback-panel-q5" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q5"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q5" id="btn-check-q5" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q5" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q5" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q6" data-screen="12" hidden>
+    <img class="bg" src="assets/q4 background.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <button type="button" class="btn-help" id="btn-help-open-q6" aria-haspopup="dialog">
+      <span>עזרה</span>
+    </button>
+
+    <!-- Container-scope note: heading/intro text leaf-marked only -- the
+         drag-and-drop sentence-ordering table below is never float-animated. -->
+    <div class="stage-card">
+      <div class="q-content">
+        <h2 id="q6-heading" tabindex="-1" data-reveal="1">שאלה 6:</h2>
+        <p class="q-text q-text--bold" data-reveal="1">
+          סדרו את המשפטים בסדר הנכון,
+          <span class="q-text-plain">כך שמאיה ואלון יוכלו לספק הסבר לראש הכפר על התהליך
+          שהוביל למשבר של מחסור בדגים בכפר:</span>
+        </p>
+
+        <div class="q-body q6-body">
+          <ul class="q6-tray" id="q6-tray" aria-label="משפטים למיון"></ul>
+
+          <table class="q6-table" id="q6-table" aria-describedby="q6-heading">
+            <thead>
+              <tr>
+                <th scope="col">סדר</th>
+                <th scope="col"><span class="sr-only">משפט</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="q6-order-num">1</td>
+                <td><button type="button" class="q6-cell" id="q6-cell-0" data-row="0"></button></td>
+              </tr>
+              <tr>
+                <td class="q6-order-num">2</td>
+                <td><button type="button" class="q6-cell" id="q6-cell-1" data-row="1"></button></td>
+              </tr>
+              <tr>
+                <td class="q6-order-num">3</td>
+                <td><button type="button" class="q6-cell" id="q6-cell-2" data-row="2"></button></td>
+              </tr>
+              <tr>
+                <td class="q6-order-num">4</td>
+                <td><button type="button" class="q6-cell" id="q6-cell-3" data-row="3"></button></td>
+              </tr>
+              <tr>
+                <td class="q6-order-num">5</td>
+                <td><button type="button" class="q6-cell" id="q6-cell-4" data-row="4"></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel m-popup" id="feedback-panel-q6" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q6"></div>
+    </div>
+
+    <div class="sr-only" role="status" aria-live="polite" id="sort-status-q6"></div>
+
+    <button type="button" class="btn-check btn-check--q6" id="btn-check-q6" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q6" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q6" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <div class="dialog-overlay m-popup" id="help-overlay-q6" hidden>
+      <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="help-title-q6" id="help-dialog-q6">
+        <h2 id="help-title-q6" class="sr-only">עזרה</h2>
+        <p id="help-desc-q6">
+          חשבו איזה אירוע הוביל לאירוע הבא.
+        </p>
+        <button type="button" class="btn-help-close" id="btn-help-close-q6" aria-label="סגור חלון עזרה"></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Video placeholder 3 (same pattern as placeholders 1/2) =====
+       To set the clip: change the <video class="video-el"> src below.
+       Optional captions: fill in .vcap-src span[data-t] lines (seconds) and
+       the data-end attribute (when the last caption should clear). -->
+  <main class="screen" id="screen-video3" data-screen="13" hidden>
+    <div class="videoscreen" data-reveal="1" data-reveal-fade>
+      <video class="video-el" src="videos/LAGUNA_PART4_V4.mp4" playsinline preload="auto" disablepictureinpicture
+             controlsList="nodownload noremoteplayback nofullscreen noplaybackrate"></video>
+      <button type="button" class="video-play" aria-label="נגן את הסרטון">▶</button>
+      <div class="video-cap" data-vcap aria-live="polite"></div>
+      <div class="vctrls hidden" dir="ltr">
+        <button class="vc-btn" type="button" data-play aria-label="נגן או השהה">▶</button>
+        <span class="vc-time" data-cur>0:00</span>
+        <input class="vc-seek" type="range" min="0" max="1000" value="0" step="1" data-seek aria-label="סרגל התקדמות">
+        <span class="vc-time" data-dur>0:00</span>
+        <button class="vc-btn vc-cc" type="button" data-cc aria-pressed="true" aria-label="הצגת כתוביות">CC</button>
+        <button class="vc-btn" type="button" data-mute aria-label="השתקה">🔊</button>
+        <input class="vc-vol" type="range" min="0" max="100" value="100" step="1" data-vol aria-label="עוצמת שמע">
+        <button class="vc-btn" type="button" data-full aria-label="מסך מלא">⛶</button>
+      </div>
+    </div>
+    <div class="vcap-src" data-end="11.233" hidden>
+      <span data-t="0"></span>
+      <span data-t="0.5">במועצת הכפר עלו כמה הצעות לפתרון הבעיה</span>
+      <span data-t="4.466"></span>
+      <span data-t="4.666">אשמח כעת להציג לכם את הפתרונות ולשמוע את דעתכם</span>
+      <span data-t="9.333"></span>
+    </div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-video3" aria-label="המשך" disabled>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-video3" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q7a" data-screen="14" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <div class="stage-card">
+      <div class="q-content" data-reveal="1">
+        <h2 id="q7a-heading" tabindex="-1">שאלה 7א:</h2>
+        <p class="q-text">
+          ראש הכפר קיבל כמה הצעות לפתרון בעיית הדגים בלגונה. כעת מאיה ואלון,
+          היועצים צעירים, צריכים לבחור בהצעה הטובה ביותר.
+        </p>
+        <p class="q-text q-text--bold">באיזו הצעה עליהם לבחור?</p>
+        <p class="q-text q-text--bold">בחרו את התשובה הנכונה:</p>
+
+        <div class="q-body q7a-body">
+          <img class="q7a-img" src="assets/q7a picture.png" alt="ראש הכפר חושב, מאיה ואלון מביטים בו">
+
+          <ul class="q7a-options" role="radiogroup" aria-labelledby="q7a-heading" id="q7a-options">
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="0"
+                data-feedback="קלות הביצוע לא בהכרח אומרת שההצעה תפתור את בעיית הדגים בצורה הטובה ביותר.">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">ההצעה הקלה ביותר לביצוע.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="1"
+                data-feedback="דעה פופולרית אינה בהכרח מבוססת על עובדות או נתונים אמיתיים על מצב הדגים בלגונה.">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">ההצעה שרוב תושבי הלגונה מעדיפים.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="2" data-correct="true"
+                data-feedback="החלטה המבוססת על מידע ונתונים שנאספו בלגונה היא הדרך המדעית והאמינה ביותר לפתור את הבעיה.">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">ההצעה שמתבססת על מידע שנאסף בלגונה.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="3"
+                data-feedback="גם לניסיון רב יש ערך, אך החלטה טובה צריכה להתבסס על נתונים ולא רק על דעתו האישית של אדם אחד.">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">ההצעה שהציע הדייג בעל הניסיון הרב ביותר בלגונה.</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel feedback-panel--q7a m-popup" id="feedback-panel-q7a" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q7a"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q7a" id="btn-check-q7a" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q7a" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q7a" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q7b" data-screen="15" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>7</span></li>
+        <li class="progress-dot"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <div class="stage-card">
+      <div class="q-content" data-reveal="1">
+        <h2 id="q7b-heading" tabindex="-1">שאלה 7ב:</h2>
+        <p class="q-text">
+          כעת, לאחר שראש הכפר הבין מה גרם למשבר הדגים בלגונה, הוא שוקל כמה הצעות
+          כפתרון לבעיה. הוא מבקש ממאיה ואלון, היועצים הצעירים, <strong>לסייע לו לבחור את
+          הפתרון המתאים ביותר</strong>. כדי לבחור נכון, עליהם להתחשב ב-2 תנאים בו-זמנית:
+        </p>
+        <p class="q-text">
+          1. הפתרון צריך לתת מענה לרעב המיידי ולפרנסתם של הדייגים.<br>
+          2. הפתרון צריך לשמור על אוכלוסיית הדגים ועל הלגונה לאורך זמן.
+        </p>
+        <p class="q-text q-text--bold">בחרו בהצעה שנותנת את המענה הטוב ביותר לשני התנאים.</p>
+
+        <div class="q-body q7b-body">
+          <img class="q7b-img" src="assets/q7b picture.png" alt="ראש הכפר מדבר, מאיה ואלון מביטים בו">
+
+          <ul class="q7b-options" role="radiogroup" aria-labelledby="q7b-heading" id="q7b-options">
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="0"
+                data-feedback="פתרון זה עוזר לדייגים עכשיו, אבל מה יקרה לכמות הדגים בעתיד?">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">לאפשר דיג חופשי ללא הגבלה כדי למנוע רעב.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="1"
+                data-feedback="פתרון זה עוזר לדגים, אבל כיצד יקבלו הדייגים מזון ופרנסה בינתיים?">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">לאסור על דיג למשך חצי שנה, כדי לשקם את אוכלוסיית הדגים.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="2" data-correct="true"
+                data-feedback="פתרון זה מאפשר לדייגים להמשיך לדוג, ובמקביל מאפשר לדגים הצעירים לגדול ולהתרבות ובכך מסייע לשמור על הלגונה.">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">לדרוש מהדייגים להשתמש ברשתות המאפשרות לדגים קטנים לצאת מהרשת.</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="q-opt" role="radio" aria-checked="false" data-idx="3"
+                data-feedback="ללא שינוי גודל הרשת, מה יקרה אם גם הדגים הקטנים ייתפסו?">
+                <span class="q-radio" aria-hidden="true"></span>
+                <span class="q-opt-text">להגביל את כמות הדגים שמותר לכל דייג לדוג, תוך שימוש ברשתות בעלות חורים קטנים.</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-panel feedback-panel--q7b m-popup" id="feedback-panel-q7b" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q7b"></div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q7b" id="btn-check-q7b" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q7b" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q7b" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q8a" data-screen="16" hidden>
+    <img class="bg" src="assets/BG1 copy.png" alt="" aria-hidden="true">
+    <img class="bg-overlay" src="assets/opacity br.png" alt="" aria-hidden="true">
+
+    <nav class="progress-row" aria-label="התקדמות בשאלון">
+      <ol class="progress-list">
+        <li class="progress-dot"><span>1</span></li>
+        <li class="progress-dot"><span>2</span></li>
+        <li class="progress-dot"><span>3</span></li>
+        <li class="progress-dot"><span>4</span></li>
+        <li class="progress-dot"><span>5</span></li>
+        <li class="progress-dot"><span>6</span></li>
+        <li class="progress-dot"><span>7</span></li>
+        <li class="progress-dot progress-dot--current" aria-current="step"><span>8</span></li>
+      </ol>
+    </nav>
+
+    <!-- Container-scope note: heading/intro text leaf-marked only -- .q8a-source
+         (draggable idea cards) and .q8a-book (drop slots, a sibling of
+         .stage-card) are drag-and-drop and never float-animated. -->
+    <div class="stage-card stage-card--q8a">
+      <div class="q-content">
+        <h2 id="q8a-heading" tabindex="-1" data-reveal="1">שאלה 8:</h2>
+        <p class="q-text" data-reveal="1">
+          לפניכם מספר רעיונות שעלו בבית המועצה.
+        </p>
+        <p class="q-text q-text--bold" data-reveal="1">גררו את הרעיונות שאתם מסכימים איתם לספר החוקים.</p>
+
+        <div class="q8a-source" id="q8a-source">
+          <div class="q8a-card">
+            <button type="button" class="q8a-card-drag" id="q8a-img-1" draggable="true">
+              <img class="q8a-card-img" src="assets/q8a 1.png" alt="ילדים צוללים עם שלט איסור דיג">
+            </button>
+            <p class="q8a-card-text">לאסור דיג באזורים מסוימים שבהם הדגים הצעירים נוטים להסתתר ולגדול.</p>
+          </div>
+          <div class="q8a-card">
+            <button type="button" class="q8a-card-drag" id="q8a-img-2" draggable="true">
+              <img class="q8a-card-img" src="assets/q8a 2.png" alt="אב מציע לילדיו ירקות ופירות">
+            </button>
+            <p class="q8a-card-text">לקיים מפגשים עם הדיינים והתושבים ולהסביר כיצד דיג יתר משפיע על עתיד הלגונה.</p>
+          </div>
+          <div class="q8a-card">
+            <button type="button" class="q8a-card-drag" id="q8a-img-3" draggable="true">
+              <img class="q8a-card-img" src="assets/q8a 3.png" alt="ראש הכפר נפגש עם תושבים סביב שולחן">
+            </button>
+            <p class="q8a-card-text">לעודד את תושבי הכפר לגוון את התזונה ולצרוך גם מזונות אחרים, כמו עופות, טופו וירקות.</p>
+          </div>
+          <div class="q8a-card">
+            <button type="button" class="q8a-card-drag" id="q8a-img-4" draggable="true">
+              <img class="q8a-card-img" src="assets/q8a 4.png" alt="ילדים צוללים ליד דגים בים">
+            </button>
+            <p class="q8a-card-text">לאסור דיג בעונות רבייה, כדי לאפשר לדגים הבוגרים להתרבות ולהעמיד דור חדש של דגים.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q8a-book">
+      <img class="q8a-book-img" src="assets/q8a book new.png" alt="ספר החוקים, פתוח בשני עמודים ריקים">
+      <button type="button" class="q8a-slot q8a-slot--1" id="q8a-slot-1" aria-label="מקום ריק בספר החוקים 1"></button>
+      <button type="button" class="q8a-slot q8a-slot--2" id="q8a-slot-2" aria-label="מקום ריק בספר החוקים 2"></button>
+      <button type="button" class="q8a-slot q8a-slot--3" id="q8a-slot-3" aria-label="מקום ריק בספר החוקים 3"></button>
+      <button type="button" class="q8a-slot q8a-slot--4" id="q8a-slot-4" aria-label="מקום ריק בספר החוקים 4"></button>
+    </div>
+
+    <div class="sr-only" role="status" aria-live="polite" id="sort-status-q8a"></div>
+
+    <div class="feedback-panel feedback-panel--q8a m-popup" id="feedback-panel-q8a" hidden>
+      <img class="feedback-icon" src="assets/ChatGPT Image Aug 9, 2026, 11_40_50 AM.png" alt="">
+      <div class="feedback-text" id="feedback-text-q8a">
+        <strong>מצוין!</strong>הוספתם את כל הרעיונות שהסכמתם איתם לספר החוקים של הלגונה.
+      </div>
+    </div>
+
+    <button type="button" class="btn-check btn-check--q8a" id="btn-check-q8a" hidden>
+      <span>בדיקה</span>
+    </button>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q8a" aria-label="המשך" hidden>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q8a" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-q8b" data-screen="17" hidden>
+    <img class="bg" src="assets/q8b background.png" alt="ראש הכפר והתושבים מחזיקים את ספר החוקים הפתוח">
+
+    <!-- Override: bubble (right side, greets first) reveals before the
+         book-pics payoff (the ideas the learner placed in 8a), which lands
+         second as the "reward" beat rather than by a left/right split. -->
+    <div class="q8b-bubble" data-reveal="1">
+      <img class="q8b-bubble-img" src="assets/q8b blob.png" alt="">
+      <span class="q8b-bubble-text">
+        גם רעיון קטן יכול לעזור לשמור על הלגונה.
+        לעיתים שילוב של כמה פתרונות קטנים יוצר שינוי גדול.
+      </span>
+    </div>
+
+    <div class="q8b-book-pics" id="q8b-book-pics" data-reveal="2" data-reveal-fade></div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-q8b" aria-label="המשך">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-q8b" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-video-q8-end" data-screen="18" hidden>
+    <div class="videoscreen" data-reveal="1" data-reveal-fade>
+      <video class="video-el" src="videos/LAGUNA_PART5_V3.mp4" playsinline preload="auto" disablepictureinpicture
+             controlsList="nodownload noremoteplayback nofullscreen noplaybackrate"></video>
+      <button type="button" class="video-play" aria-label="נגן את הסרטון">▶</button>
+      <div class="video-cap" data-vcap aria-live="polite"></div>
+      <div class="vctrls hidden" dir="ltr">
+        <button class="vc-btn" type="button" data-play aria-label="נגן או השהה">▶</button>
+        <span class="vc-time" data-cur>0:00</span>
+        <input class="vc-seek" type="range" min="0" max="1000" value="0" step="1" data-seek aria-label="סרגל התקדמות">
+        <span class="vc-time" data-dur>0:00</span>
+        <button class="vc-btn vc-cc" type="button" data-cc aria-pressed="true" aria-label="הצגת כתוביות">CC</button>
+        <button class="vc-btn" type="button" data-mute aria-label="השתקה">🔊</button>
+        <input class="vc-vol" type="range" min="0" max="100" value="100" step="1" data-vol aria-label="עוצמת שמע">
+        <button class="vc-btn" type="button" data-full aria-label="מסך מלא">⛶</button>
+      </div>
+    </div>
+    <div class="vcap-src" data-end="16.266" hidden>
+      <span data-t="0"></span>
+      <span data-t="4.133">תודה רבה לכם מאיה ואלון, על האכפתיות והעזרה.</span>
+      <span data-t="9.233">תודה על ההזדמנות ללמוד על הלגונה המיוחדת שלכם</span>
+      <span data-t="13.133">זו הייתה חוויה מלמדת ומעניינת.</span>
+    </div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-video-q8-end" aria-label="המשך" disabled>
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-video-q8-end" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-before-ending" data-screen="19" hidden>
+    <img class="bg" src="assets/before ending new.png" alt="מאיה ואלון עם אגודל למעלה, מוקפים בבני הכפר">
+
+    <div class="before-ending-panel" data-reveal="1">
+      <img class="before-ending-panel-img" src="assets/white blob2.png" alt="">
+      <div class="before-ending-text">
+        <p>תלמידים יקרים, למדתם היום מיומנות חדשה –<br>
+        <strong>קבלת החלטות ופתרון בעיות המבוססים על ידע מדעי.</strong></p>
+        <p>זכרו: לפעמים אין פתרון מושלם, אבל אפשר לקבל <strong>החלטה טובה יותר</strong><br>
+        כאשר משתמשים במידע שנאסף, בראיות ובחשיבה מעמיקה.</p>
+        <p>בפעם הבאה שתתקלו בדילמה בבית הספר, בבית או בחיים –<br>
+        זכרו את <strong>תיק המשימה של מארובו</strong> ושאלו את עצמכם:</p>
+        <ul class="before-ending-list">
+          <li>איזה מידע יש לי?</li>
+          <li>אילו עובדות ונתונים שנאספו יעזרו לי להבין את המצב?</li>
+          <li>אילו פתרונות אפשריים קיימים?</li>
+          <li>מה יהיו ההשלכות של כל פתרון?</li>
+          <li>איזו החלטה תעזור בצורה הטובה ביותר?</li>
+        </ul>
+        <p>כך פועלים אנשים שמקבלים החלטות בצורה חכמה ואחראית.</p>
+      </div>
+    </div>
+
+    <button type="button" class="nav-fwd" id="btn-continue-before-ending" aria-label="המשך">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+
+    <button type="button" class="nav-back" id="btn-back-before-ending" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <main class="screen" id="screen-ending" data-screen="20" hidden>
+    <img class="bg" src="assets/ending background.png" alt="הלגונה השלווה עם דולפינים שוחים">
+
+    <div class="ending-panel" data-reveal="1">
+      <img class="ending-panel-img" src="assets/small blob ending.png" alt="">
+      <button type="button" class="btn-help-close" id="btn-ending-close" aria-label="סגירת הקורס"></button>
+      <div class="ending-text">
+        <p class="ending-line1">כל הכבוד, המשימה הושלמה!</p>
+        <p class="ending-score-line">הציון שלך הוא <span id="ending-score">--</span></p>
+        <p class="ending-line3">יש לסגור את המשימה בלחיצה על X</p>
+      </div>
+    </div>
+
+    <button type="button" class="nav-back" id="btn-back-ending" aria-label="חזרה">
+      <img src="assets/btn-nav.png" alt="">
+    </button>
+  </main>
+
+  <!-- ===== Shared image-zoom modal (reused by any screen with a [data-zoom-src] button) ===== -->
+  <div class="dialog-overlay img-zoom-overlay" id="img-zoom-overlay" hidden>
+    <div class="img-zoom-panel">
+      <img class="img-zoom-full" id="img-zoom-full" src="" alt="">
+      <button type="button" class="btn-help-close" id="img-zoom-close" aria-label="סגור תמונה מוגדלת"></button>
+    </div>
+  </div>
+</div>
+<script src="motion.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
