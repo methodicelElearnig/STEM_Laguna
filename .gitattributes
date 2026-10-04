@@ -1,2 +1,2 @@
-videos/LAGUNA_PART1_V4.mp4 filter=lfs diff=lfs merge=lfs -text
-videos/LAGUNA_PART3_V4.mp4 filter=lfs diff=lfs merge=lfs -text
+videos/LAGUNA_PART1_V5FIX.mp4 filter=lfs diff=lfs merge=lfs -text
+videos/LAGUNA_PART3_V5.mp4 filter=lfs diff=lfs merge=lfs -text
