@@ -2607,40 +2607,6 @@ body {
   font-weight: 500;
 }
 
-/* Closing instruction bubble -- same yellow speech bubble asset as screen
-   8b, sitting just above the "next" arrow's corner (bottom-left, top
-   935px) so that corner stays clear, tail pointing down into it. */
-.ending-bubble {
-  position: absolute;
-  top: 690px;
-  left: 40px;
-  width: 520px;
-  height: 230px;
-  z-index: 2;
-}
-
-.ending-bubble-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.ending-bubble-text {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 40px 44px;
-  text-align: center;
-  font-size: 28px;
-  line-height: 1.35;
-  font-weight: 600;
-  color: #2a1c0f;
-}
-
 /* ---------- Screen 11: final black "return to the model" screen ---------- */
 
 #screen-return {
